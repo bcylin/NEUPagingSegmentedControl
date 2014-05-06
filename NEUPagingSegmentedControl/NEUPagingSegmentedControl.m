@@ -18,6 +18,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
+@property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
 @property (nonatomic, strong) NEUHorizontalLine *bottomBorder;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
@@ -96,6 +97,11 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 #pragma mark - Private Properties
 
+- (CGFloat)buttonWidth
+{
+    return (_buttonWidth > 0) ? _buttonWidth : CGRectGetWidth(self.bounds);
+}
+
 - (void)setSegmentButtons:(NSArray *)segmentButtons
 {
     if (_segmentButtons != segmentButtons) {
@@ -169,6 +175,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
         CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
         CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+
+        // Shift indicator as scroll view scrolls
+        CGFloat xOffsetFromCurrentIndex = contentOffset.x - CGRectGetWidth(self.scrollView.bounds) * self.currentIndex;
+        [self shiftIndicatorByPercentage:(xOffsetFromCurrentIndex / CGRectGetWidth(self.scrollView.bounds))];
 
         NSInteger targetIndex = lroundf((float)contentOffset.x / scrollViewWidth);
         if (self.scrollView.bounds.origin.x == scrollViewWidth * targetIndex) {
@@ -279,10 +289,8 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 - (CGPoint)indicatorCenterAtIndex:(NSInteger)index
 {
-    NSInteger segmentsCount = MAX(1, [self.segmentButtons count]);
-    CGFloat segmentWidth = CGRectGetWidth(self.bounds) / segmentsCount;
     return (CGPoint) {
-        .x = floorf(segmentWidth / 2) + segmentWidth * index,
+        .x = floorf(self.buttonWidth / 2) + self.buttonWidth * index,
         .y = self.indicatorView.center.y
     };
 }
@@ -303,6 +311,23 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         [weakSelf.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
             button.selected = (idx == index);
         }];
+    }];
+}
+
+- (void)shiftIndicatorByPercentage:(float)offsetPercentage
+{
+    if (offsetPercentage < -1 || offsetPercentage > 1) {
+        return;
+    }
+
+    CGPoint indicatorCenter = [self indicatorCenterAtIndex:self.currentIndex];
+    indicatorCenter.x += self.buttonWidth * offsetPercentage;
+    self.indicatorView.center = indicatorCenter;
+
+    // Hilight corresponding section
+    NSInteger correspondingIndex = floorf(indicatorCenter.x / self.buttonWidth);
+    [self.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
+        button.selected = (idx == correspondingIndex);
     }];
 }
 
