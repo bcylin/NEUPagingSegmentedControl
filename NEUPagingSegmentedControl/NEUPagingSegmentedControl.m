@@ -7,6 +7,7 @@
 //
 
 #import "NEUPagingSegmentedControl.h"
+#import "NEUHorizontalLine.h"
 #import "NEUTriangleView.h"
 
 static const CGFloat kDefaultIndicatorWidth = 12;
@@ -15,12 +16,13 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
 @property (nonatomic, strong) NSArray *segmentButtons;
+@property (nonatomic, strong) NEUHorizontalLine *bottomBorder;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
 
 @implementation NEUPagingSegmentedControl
 
-#pragma mark - Properties
+#pragma mark - Public Properties
 
 - (void)setSegmentTitles:(NSArray *)segmentTitles
 {
@@ -34,6 +36,43 @@ static const CGFloat kDefaultIndicatorHeight = 8;
     }
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    self.indicatorView.innerColor = backgroundColor;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor
+{
+    if (![_borderColor isEqual:borderColor]) {
+        _borderColor = [borderColor copy];
+        self.bottomBorder.color = borderColor;
+        self.indicatorView.borderColor = borderColor;
+    }
+}
+
+- (void)setSegmentTitleColor:(UIColor *)segmentTitleColor
+{
+    if (![_segmentTitleColor isEqual:segmentTitleColor]) {
+        _segmentTitleColor = segmentTitleColor;
+        for (UIButton *button in self.segmentButtons) {
+            [button setTitleColor:segmentTitleColor forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)setSelectedSegmentTitleColor:(UIColor *)selectedSegmentTitleColor
+{
+    if (![_selectedSegmentTitleColor isEqual:selectedSegmentTitleColor]) {
+        _selectedSegmentTitleColor = selectedSegmentTitleColor;
+        for (UIButton *button in self.segmentButtons) {
+            [button setTitleColor:selectedSegmentTitleColor forState:UIControlStateSelected];
+        }
+    }
+}
+
+#pragma mark - Private Properties
+
 - (void)setSegmentButtons:(NSArray *)segmentButtons
 {
     if (_segmentButtons != segmentButtons) {
@@ -45,6 +84,15 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         [self layoutButtons:_segmentButtons];
         [self moveIndicatorToIndex:0 animated:NO];
     }
+}
+
+- (NEUHorizontalLine *)bottomBorder
+{
+    if (!_bottomBorder) {
+        _bottomBorder = [[NEUHorizontalLine alloc] init];
+        _bottomBorder.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _bottomBorder;
 }
 
 - (NEUTriangleView *)indicatorView
@@ -62,10 +110,19 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = NO;
-        self.tintColor = [UIColor clearColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-        self.indicatorView.frame = CGRectMake(0, frame.size.height, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
+
+        self.bottomBorder.frame = CGRectMake(0, frame.size.height - 1, frame.size.width, 1);
+        [self addSubview:self.bottomBorder];
+        self.indicatorView.frame = CGRectMake(0, frame.size.height - 1, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
         [self addSubview:self.indicatorView];
+
+        // Default colours
+        self.tintColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
+        self.borderColor = [UIColor blackColor];
+        self.segmentTitleColor = [UIColor blackColor];
+        self.selectedSegmentTitleColor = [UIColor blueColor];
     }
     return self;
 }
@@ -95,8 +152,8 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button setTitle:[title description] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [button setTitleColor:self.segmentTitleColor forState:UIControlStateNormal];
+    [button setTitleColor:self.selectedSegmentTitleColor forState:UIControlStateSelected];
     [button addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }

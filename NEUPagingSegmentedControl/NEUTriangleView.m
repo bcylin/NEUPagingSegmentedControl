@@ -60,6 +60,14 @@
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
     CGContextSetLineWidth(context, 1 / [[UIScreen mainScreen] scale]);
     CGContextDrawPath(context, kCGPathStroke);
+
+    // Trim 1 pt off the border from the top
+    [self.innerColor setStroke];
+
+    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextSetLineWidth(context, 1);
+    CGContextDrawPath(context, kCGPathStroke);
 }
 
 @end
