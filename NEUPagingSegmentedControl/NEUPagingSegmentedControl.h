@@ -10,6 +10,8 @@
 
 @interface NEUPagingSegmentedControl : UIView
 
+@property (nonatomic, assign, readonly) NSUInteger currentIndex;
+
 // Set up paging segments with given titles
 @property (nonatomic, copy) NSArray *segmentTitles;
 

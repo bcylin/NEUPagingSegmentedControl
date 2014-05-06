@@ -13,6 +13,7 @@ static const CGFloat kDefaultIndicatorWidth = 12;
 static const CGFloat kDefaultIndicatorHeight = 8;
 
 @interface NEUPagingSegmentedControl ()
+@property (nonatomic, assign, readwrite) NSUInteger currentIndex;
 @property (nonatomic, strong) NSArray *segmentButtons;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
@@ -42,6 +43,7 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         }
         _segmentButtons = segmentButtons;
         [self layoutButtons:_segmentButtons];
+        [self moveIndicatorToIndex:0 animated:NO];
     }
 }
 
@@ -60,11 +62,28 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = NO;
+        self.tintColor = [UIColor clearColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         self.indicatorView.frame = CGRectMake(0, frame.size.height, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
         [self addSubview:self.indicatorView];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    // Reposition indicator to after rotation
+    [self moveIndicatorToIndex:self.currentIndex animated:YES];
+}
+
+#pragma mark - Target Action
+
+- (void)buttonSelected:(UIButton *)sender
+{
+    NSInteger index = [self.segmentButtons indexOfObject:sender];
+    [self moveIndicatorToIndex:index animated:YES];
+    // TODO: notify delegate
 }
 
 #pragma mark - Private Methods
@@ -73,6 +92,9 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button setTitle:[title description] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [button addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
 
@@ -86,8 +108,6 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         UIButton *thisButton = buttons[idx];
         [thisButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addSubview:thisButton];
-
-        thisButton.backgroundColor = (idx % 2 == 0) ? [UIColor grayColor] : [UIColor lightGrayColor];
 
         if (idx == 0) {
             continue;
@@ -141,6 +161,35 @@ static const CGFloat kDefaultIndicatorHeight = 8;
                                                                  options:kNilOptions
                                                                  metrics:nil
                                                                    views:viewDictionary]];
+}
+
+- (CGPoint)indicatorCenterAtIndex:(NSInteger)index
+{
+    NSInteger segmentsCount = MAX(1, [self.segmentButtons count]);
+    CGFloat segmentWidth = CGRectGetWidth(self.bounds) / segmentsCount;
+    return (CGPoint) {
+        .x = floorf(segmentWidth / 2) + segmentWidth * index,
+        .y = self.indicatorView.center.y
+    };
+}
+
+- (void)moveIndicatorToIndex:(NSInteger)index animated:(BOOL)animated
+{
+    if (index < 0 || index >= [self.segmentTitles count]) {
+        return;
+    }
+
+    self.currentIndex = index;
+    CGPoint indicatorCenter = [self indicatorCenterAtIndex:index];
+
+    __weak typeof(self)weakSelf = self;
+    [UIView animateWithDuration:(animated ? 0.3 : 0) animations:^{
+        weakSelf.indicatorView.center = indicatorCenter;
+    } completion:^(BOOL finished) {
+        [weakSelf.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
+            button.selected = (idx == index);
+        }];
+    }];
 }
 
 @end
