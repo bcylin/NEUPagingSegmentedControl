@@ -186,7 +186,14 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)buttonSelected:(UIButton *)sender
 {
     NSInteger index = [self.segmentButtons indexOfObject:sender];
+    NSInteger scrollViewIndex = lroundf((float)self.scrollView.bounds.origin.x / CGRectGetWidth(self.scrollView.bounds));
     [self moveIndicatorToIndex:index animated:YES];
+
+    if (self.scrollView && index != scrollViewIndex) {
+        CGPoint offset = CGPointMake(CGRectGetWidth(self.scrollView.bounds) * index, 0);
+        [self.scrollView setContentOffset:offset animated:YES];
+    }
+
     if ([self.delegate conformsToProtocol:@protocol(NEUPagingSegmentedControlDelegate)] &&
         [self.delegate respondsToSelector:@selector(pagingSegmentedControl:didSelectSegmentAtIndex:)]) {
         [self.delegate pagingSegmentedControl:self didSelectSegmentAtIndex:index];
