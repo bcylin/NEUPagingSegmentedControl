@@ -83,7 +83,10 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     NSInteger index = [self.segmentButtons indexOfObject:sender];
     [self moveIndicatorToIndex:index animated:YES];
-    // TODO: notify delegate
+    if ([self.delegate conformsToProtocol:@protocol(NEUPagingSegmentedControlDelegate)] &&
+        [self.delegate respondsToSelector:@selector(pagingSegmentedControl:didSelectSegmentAtIndex:)]) {
+        [self.delegate pagingSegmentedControl:self didSelectSegmentAtIndex:index];
+    }
 }
 
 #pragma mark - Private Methods
