@@ -7,9 +7,14 @@
 //
 
 #import "NEUPagingSegmentedControl.h"
+#import "NEUTriangleView.h"
+
+static const CGFloat kDefaultIndicatorWidth = 12;
+static const CGFloat kDefaultIndicatorHeight = 8;
 
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, strong) NSArray *segmentButtons;
+@property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
 
 @implementation NEUPagingSegmentedControl
@@ -40,6 +45,15 @@
     }
 }
 
+- (NEUTriangleView *)indicatorView
+{
+    if (!_indicatorView) {
+        _indicatorView = [[NEUTriangleView alloc] init];
+        _indicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _indicatorView;
+}
+
 #pragma mark - UIView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -47,6 +61,8 @@
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = NO;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+        self.indicatorView.frame = CGRectMake(0, frame.size.height, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
+        [self addSubview:self.indicatorView];
     }
     return self;
 }
