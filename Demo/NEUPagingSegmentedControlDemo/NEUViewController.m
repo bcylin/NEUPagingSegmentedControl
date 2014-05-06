@@ -26,6 +26,7 @@
 
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44);
     NEUPagingSegmentedControl *segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:frame];
+    segmentedControl.segmentTitles = @[@"A", @"B", @"C", @"D", @"E",];
     [self.view addSubview:segmentedControl];
 }
 
