@@ -28,9 +28,28 @@
 {
     [super loadView];
 
+    NSArray *segments = @[@"0.2 Gray", @"0.3 Gray", @"0.4 Gray", @"0.5 Gray"];
+    CGSize pageSize = self.view.bounds.size;
+
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.contentSize = CGSizeMake(pageSize.width * [segments count], pageSize.height);
+    [self.view addSubview:scrollView];
+
+    [segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:[obj floatValue]];
+        view.frame = (CGRect) {
+            .origin.x = pageSize.width * idx,
+            .origin.y = 0,
+            .size = pageSize
+        };
+        [scrollView addSubview:view];
+    }];
+
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44);
     NEUPagingSegmentedControl *segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:frame];
-    segmentedControl.segmentTitles = @[@"A", @"B", @"C", @"D", @"E",];
+    segmentedControl.segmentTitles = segments;
+    segmentedControl.scrollView = scrollView;
     segmentedControl.delegate = self;
     [self.view addSubview:segmentedControl];
 }

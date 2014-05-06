@@ -13,6 +13,9 @@
 static const CGFloat kDefaultIndicatorWidth = 12;
 static const CGFloat kDefaultIndicatorHeight = 8;
 
+static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
+static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
+
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
 @property (nonatomic, strong) NSArray *segmentButtons;
@@ -34,6 +37,26 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         }
         self.segmentButtons = [buttons copy];
     }
+}
+
+- (void)setScrollView:(UIScrollView *)scrollView
+{
+    [_scrollView removeObserver:self
+                     forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                        context:kNEUScrollViewObservationContext];
+
+    _scrollView = scrollView;
+    _scrollView.scrollsToTop = NO;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.directionalLockEnabled = YES;
+    _scrollView.alwaysBounceVertical = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+
+    [_scrollView addObserver:self
+                  forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                     options:NSKeyValueObservingOptionNew
+                     context:kNEUScrollViewObservationContext];
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
@@ -132,6 +155,30 @@ static const CGFloat kDefaultIndicatorHeight = 8;
     [super layoutSubviews];
     // Reposition indicator to after rotation
     [self moveIndicatorToIndex:self.currentIndex animated:YES];
+}
+
+- (void)dealloc
+{
+    self.scrollView = nil;
+}
+
+#pragma mark - Key-Value Observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
+        CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
+        CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+
+        NSInteger targetIndex = lroundf((float)contentOffset.x / scrollViewWidth);
+        if (self.scrollView.bounds.origin.x == scrollViewWidth * targetIndex) {
+            // Update section index when scroll view reaches target page
+            [self moveIndicatorToIndex:targetIndex animated:NO];
+        }
+
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 #pragma mark - Target Action
