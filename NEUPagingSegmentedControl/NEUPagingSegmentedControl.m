@@ -77,6 +77,16 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     }
 }
 
+- (void)setButtonSeparatorColor:(UIColor *)buttonSeparatorColor
+{
+    if (![_buttonSeparatorColor isEqual:buttonSeparatorColor]) {
+        _buttonSeparatorColor = [buttonSeparatorColor copy];
+        for (NEUBorderedView *view in self.buttonSeparators) {
+            view.borderColor = buttonSeparatorColor;
+        }
+    }
+}
+
 - (void)setSegmentTitleColor:(UIColor *)segmentTitleColor
 {
     if (![_segmentTitleColor isEqual:segmentTitleColor]) {
@@ -160,8 +170,9 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         // Default colours
         self.tintColor = [UIColor clearColor];
         self.backgroundColor = [UIColor whiteColor];
-        self.borderColor = [UIColor blackColor];
-        self.segmentTitleColor = [UIColor blackColor];
+        self.borderColor = [UIColor grayColor];
+        self.buttonSeparatorColor = [UIColor lightGrayColor];
+        self.segmentTitleColor = [UIColor grayColor];
         self.selectedSegmentTitleColor = [UIColor blueColor];
     }
     return self;
@@ -296,6 +307,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         // Add separator between buttons
         NEUBorderedView *separator = [[NEUBorderedView alloc] init];
         separator.borderType = NEUBorderTypeLeft;
+        separator.borderColor = self.buttonSeparatorColor;
         [separator setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.buttonSeparators addObject:separator];
         [self addSubview:separator];

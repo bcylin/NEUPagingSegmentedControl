@@ -30,6 +30,7 @@
 // Component colours
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, copy) UIColor *borderColor;
+@property (nonatomic, copy) UIColor *buttonSeparatorColor;
 @property (nonatomic, copy) UIColor *segmentTitleColor;
 @property (nonatomic, copy) UIColor *selectedSegmentTitleColor;
 
