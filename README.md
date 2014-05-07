@@ -27,3 +27,7 @@ NEUPagingSegmentedControl requires ARC with iOS 7 and above.
 ## Installation
 
 Add files in `NEUPagingSegmentedControl` folder to an iOS project.
+
+## License
+
+NEUPagingSegmentedControl is released under the MIT license. See LICENSE.md for more info.
