@@ -19,6 +19,10 @@
 		B53D85331917F794009A7961 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53D851B1917F794009A7961 /* UIKit.framework */; };
 		B53D853B1917F794009A7961 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B53D85391917F794009A7961 /* InfoPlist.strings */; };
 		B53D853D1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B53D853C1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m */; };
+		B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6D81917FBA500A01E88 /* NEUViewController.m */; };
+		B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */; };
+		B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */; };
+		B5A8C6E31917FE2B00A01E88 /* NEUHorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,14 @@
 		B53D85381917F794009A7961 /* NEUPagingSegmentedControlDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NEUPagingSegmentedControlDemoTests-Info.plist"; sourceTree = "<group>"; };
 		B53D853A1917F794009A7961 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B53D853C1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEUPagingSegmentedControlDemoTests.m; sourceTree = "<group>"; };
+		B5A8C6D71917FBA500A01E88 /* NEUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUViewController.h; sourceTree = "<group>"; };
+		B5A8C6D81917FBA500A01E88 /* NEUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEUViewController.m; sourceTree = "<group>"; };
+		B5A8C6DA1917FBAF00A01E88 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUPagingSegmentedControl.h; path = ../../NEUPagingSegmentedControl/NEUPagingSegmentedControl.h; sourceTree = "<group>"; };
+		B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUPagingSegmentedControl.m; path = ../../NEUPagingSegmentedControl/NEUPagingSegmentedControl.m; sourceTree = "<group>"; };
+		B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUTriangleView.h; path = ../../NEUPagingSegmentedControl/NEUTriangleView.h; sourceTree = "<group>"; };
+		B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUTriangleView.m; path = ../../NEUPagingSegmentedControl/NEUTriangleView.m; sourceTree = "<group>"; };
+		B5A8C6E11917FE2B00A01E88 /* NEUHorizontalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUHorizontalLine.h; path = ../../NEUPagingSegmentedControl/NEUHorizontalLine.h; sourceTree = "<group>"; };
+		B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUHorizontalLine.m; path = ../../NEUPagingSegmentedControl/NEUHorizontalLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +119,13 @@
 		B53D851D1917F794009A7961 /* NEUPagingSegmentedControlDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B5A8C6DD1917FBB400A01E88 /* NEUPagingSegmentedControl */,
 				B53D851E1917F794009A7961 /* Supporting Files */,
 				B53D85291917F794009A7961 /* Images.xcassets */,
 				B53D85261917F794009A7961 /* NEUAppDelegate.h */,
 				B53D85271917F794009A7961 /* NEUAppDelegate.m */,
+				B5A8C6D71917FBA500A01E88 /* NEUViewController.h */,
+				B5A8C6D81917FBA500A01E88 /* NEUViewController.m */,
 			);
 			path = NEUPagingSegmentedControlDemo;
 			sourceTree = "<group>";
@@ -142,6 +157,19 @@
 				B53D85381917F794009A7961 /* NEUPagingSegmentedControlDemoTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5A8C6DD1917FBB400A01E88 /* NEUPagingSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				B5A8C6E11917FE2B00A01E88 /* NEUHorizontalLine.h */,
+				B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */,
+				B5A8C6DA1917FBAF00A01E88 /* NEUPagingSegmentedControl.h */,
+				B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */,
+				B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */,
+				B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */,
+			);
+			name = NEUPagingSegmentedControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +270,10 @@
 			files = (
 				B53D85241917F794009A7961 /* main.m in Sources */,
 				B53D85281917F794009A7961 /* NEUAppDelegate.m in Sources */,
+				B5A8C6E31917FE2B00A01E88 /* NEUHorizontalLine.m in Sources */,
+				B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */,
+				B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */,
+				B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
