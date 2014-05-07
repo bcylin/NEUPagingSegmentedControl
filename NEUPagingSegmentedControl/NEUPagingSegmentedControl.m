@@ -7,7 +7,7 @@
 //
 
 #import "NEUPagingSegmentedControl.h"
-#import "NEUHorizontalLine.h"
+#import "NEUBorderedView.h"
 #import "NEUTriangleView.h"
 
 static const CGFloat kDefaultIndicatorWidth = 12;
@@ -21,7 +21,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 @property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;
 @property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
-@property (nonatomic, strong) NEUHorizontalLine *bottomBorder;
+@property (nonatomic, strong) NEUBorderedView *bottomBorder;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
 
@@ -71,7 +71,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 {
     if (![_borderColor isEqual:borderColor]) {
         _borderColor = [borderColor copy];
-        self.bottomBorder.color = borderColor;
+        self.bottomBorder.borderColor= borderColor;
         self.indicatorView.borderColor = borderColor;
     }
 }
@@ -116,10 +116,11 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     }
 }
 
-- (NEUHorizontalLine *)bottomBorder
+- (NEUBorderedView *)bottomBorder
 {
     if (!_bottomBorder) {
-        _bottomBorder = [[NEUHorizontalLine alloc] init];
+        _bottomBorder = [[NEUBorderedView alloc] init];
+        _bottomBorder.borderType = NEUBorderTypeBottom;
         _bottomBorder.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     }
     return _bottomBorder;
