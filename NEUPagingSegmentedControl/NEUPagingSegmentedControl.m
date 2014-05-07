@@ -18,6 +18,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
+@property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;
 @property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
 @property (nonatomic, strong) NEUHorizontalLine *bottomBorder;
@@ -111,7 +112,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         }
         _segmentButtons = segmentButtons;
         [self layoutButtons:_segmentButtons];
-        [self moveIndicatorToIndex:0 animated:NO];
+        [self moveIndicatorToIndex:0 animated:NO completion:nil];
     }
 }
 
@@ -160,7 +161,8 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 {
     [super layoutSubviews];
     // Reposition indicator to after rotation
-    [self moveIndicatorToIndex:self.currentIndex animated:YES];
+    self.buttonWidth = CGRectGetWidth(self.bounds) / MAX(1, [self.segmentButtons count]);
+    [self moveIndicatorToIndex:self.currentIndex animated:NO completion:nil];
 }
 
 - (void)dealloc
@@ -173,6 +175,9 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
+        if ([self isMovingIndicatorWithButtonSelection]) {
+            return;
+        }
         CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
         CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
 
@@ -183,7 +188,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         NSInteger targetIndex = lroundf((float)contentOffset.x / scrollViewWidth);
         if (self.scrollView.bounds.origin.x == scrollViewWidth * targetIndex) {
             // Update section index when scroll view reaches target page
-            [self moveIndicatorToIndex:targetIndex animated:NO];
+            [self moveIndicatorToIndex:targetIndex animated:NO completion:nil];
         }
 
     } else {
@@ -197,7 +202,11 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 {
     NSInteger index = [self.segmentButtons indexOfObject:sender];
     NSInteger scrollViewIndex = lroundf((float)self.scrollView.bounds.origin.x / CGRectGetWidth(self.scrollView.bounds));
-    [self moveIndicatorToIndex:index animated:YES];
+    self.movingIndicatorWithButtonSelection = YES;
+    __weak typeof(self)weakSelf = self;
+    [self moveIndicatorToIndex:index animated:YES completion:^{
+        weakSelf.movingIndicatorWithButtonSelection = NO;
+    }];
 
     if (self.scrollView && index != scrollViewIndex) {
         CGPoint offset = CGPointMake(CGRectGetWidth(self.scrollView.bounds) * index, 0);
@@ -295,7 +304,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     };
 }
 
-- (void)moveIndicatorToIndex:(NSInteger)index animated:(BOOL)animated
+- (void)moveIndicatorToIndex:(NSInteger)index animated:(BOOL)animated completion:(void (^)(void))completion
 {
     if (index < 0 || index >= [self.segmentTitles count]) {
         return;
@@ -311,6 +320,9 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         [weakSelf.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
             button.selected = (idx == index);
         }];
+        if (completion) {
+            completion();
+        }
     }];
 }
 
