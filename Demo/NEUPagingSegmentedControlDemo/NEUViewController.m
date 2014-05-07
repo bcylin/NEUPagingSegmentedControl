@@ -9,8 +9,11 @@
 #import "NEUViewController.h"
 #import "NEUPagingSegmentedControl.h"
 
-@interface NEUViewController () <NEUPagingSegmentedControlDelegate>
 
+@interface NEUViewController () <NEUPagingSegmentedControlDelegate>
+@property (nonatomic, strong) NEUPagingSegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *segments;
 @end
 
 @implementation NEUViewController
@@ -28,30 +31,29 @@
 {
     [super loadView];
 
-    NSArray *segments = @[@"0.2 Gray", @"0.3 Gray", @"0.4 Gray", @"0.5 Gray"];
-    CGSize pageSize = self.view.bounds.size;
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.scrollView];
 
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(pageSize.width * [segments count], pageSize.height);
-    [self.view addSubview:scrollView];
-
-    [segments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    self.segments = @[@"0.2 Gray", @"0.3 Gray", @"0.4 Gray", @"0.5 Gray"];
+    for (id segment in self.segments) {
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:[obj floatValue]];
-        view.frame = (CGRect) {
-            .origin.x = pageSize.width * idx,
-            .origin.y = 0,
-            .size = pageSize
-        };
-        [scrollView addSubview:view];
-    }];
+        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:[segment floatValue]];
+        [self.scrollView addSubview:view];
+    }
 
     CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44);
-    NEUPagingSegmentedControl *segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:frame];
-    segmentedControl.segmentTitles = segments;
-    segmentedControl.scrollView = scrollView;
-    segmentedControl.delegate = self;
-    [self.view addSubview:segmentedControl];
+    self.segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:frame];
+    self.segmentedControl.segmentTitles = self.segments;
+    self.segmentedControl.scrollView = self.scrollView;
+    self.segmentedControl.delegate = self;
+    [self.view addSubview:self.segmentedControl];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self layoutScrollViewPages];
 }
 
 #pragma mark - NEUPagingSegmentedControlDelegate
@@ -59,6 +61,23 @@
 - (void)pagingSegmentedControl:(NEUPagingSegmentedControl *)segmentedControl didSelectSegmentAtIndex:(NSInteger)index
 {
     NSLog(@"%s \n[Line:%03d] index %d selected", __PRETTY_FUNCTION__, __LINE__, index);
+}
+
+#pragma mark - Private Methods
+
+- (void)layoutScrollViewPages
+{
+    CGSize pageSize = self.view.bounds.size;
+    self.scrollView.contentSize = CGSizeMake(pageSize.width * [self.segments count], pageSize.height);
+    [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        view.frame = (CGRect) {
+            .origin.x = pageSize.width * idx,
+            .origin.y = 0,
+            .size = pageSize
+        };
+    }];
+    CGPoint contentOffset = CGPointMake(pageSize.width * self.segmentedControl.currentIndex, 0);
+    [self.scrollView setContentOffset:contentOffset animated:NO];
 }
 
 @end
