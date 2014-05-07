@@ -30,6 +30,7 @@
 - (void)loadView
 {
     [super loadView];
+    [self customizeAppearance];
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -64,6 +65,13 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)customizeAppearance
+{
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+}
 
 - (void)layoutScrollViewPages
 {
