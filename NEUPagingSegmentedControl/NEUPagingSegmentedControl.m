@@ -13,8 +13,13 @@
 static const CGFloat kDefaultIndicatorWidth = 12;
 static const CGFloat kDefaultIndicatorHeight = 8;
 
+static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
+static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
+
 @interface NEUPagingSegmentedControl ()
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
+@property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;
+@property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
 @property (nonatomic, strong) NEUHorizontalLine *bottomBorder;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
@@ -34,6 +39,26 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         }
         self.segmentButtons = [buttons copy];
     }
+}
+
+- (void)setScrollView:(UIScrollView *)scrollView
+{
+    [_scrollView removeObserver:self
+                     forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                        context:kNEUScrollViewObservationContext];
+
+    _scrollView = scrollView;
+    _scrollView.scrollsToTop = NO;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.directionalLockEnabled = YES;
+    _scrollView.alwaysBounceVertical = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+
+    [_scrollView addObserver:self
+                  forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                     options:NSKeyValueObservingOptionNew
+                     context:kNEUScrollViewObservationContext];
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
@@ -73,6 +98,11 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 
 #pragma mark - Private Properties
 
+- (CGFloat)buttonWidth
+{
+    return (_buttonWidth > 0) ? _buttonWidth : CGRectGetWidth(self.bounds);
+}
+
 - (void)setSegmentButtons:(NSArray *)segmentButtons
 {
     if (_segmentButtons != segmentButtons) {
@@ -82,7 +112,7 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         }
         _segmentButtons = segmentButtons;
         [self layoutButtons:_segmentButtons];
-        [self moveIndicatorToIndex:0 animated:NO];
+        [self moveIndicatorToIndex:0 animated:NO completion:nil];
     }
 }
 
@@ -131,7 +161,39 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 {
     [super layoutSubviews];
     // Reposition indicator to after rotation
-    [self moveIndicatorToIndex:self.currentIndex animated:YES];
+    self.buttonWidth = CGRectGetWidth(self.bounds) / MAX(1, [self.segmentButtons count]);
+    [self moveIndicatorToIndex:self.currentIndex animated:NO completion:nil];
+}
+
+- (void)dealloc
+{
+    self.scrollView = nil;
+}
+
+#pragma mark - Key-Value Observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
+        if ([self isMovingIndicatorWithButtonSelection]) {
+            return;
+        }
+        CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
+        CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+
+        // Shift indicator as scroll view scrolls
+        CGFloat xOffsetFromCurrentIndex = contentOffset.x - CGRectGetWidth(self.scrollView.bounds) * self.currentIndex;
+        [self shiftIndicatorByPercentage:(xOffsetFromCurrentIndex / CGRectGetWidth(self.scrollView.bounds))];
+
+        NSInteger targetIndex = lroundf((float)contentOffset.x / scrollViewWidth);
+        if (self.scrollView.bounds.origin.x == scrollViewWidth * targetIndex) {
+            // Update section index when scroll view reaches target page
+            [self moveIndicatorToIndex:targetIndex animated:NO completion:nil];
+        }
+
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 #pragma mark - Target Action
@@ -139,7 +201,18 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 - (void)buttonSelected:(UIButton *)sender
 {
     NSInteger index = [self.segmentButtons indexOfObject:sender];
-    [self moveIndicatorToIndex:index animated:YES];
+    NSInteger scrollViewIndex = lroundf((float)self.scrollView.bounds.origin.x / CGRectGetWidth(self.scrollView.bounds));
+    self.movingIndicatorWithButtonSelection = YES;
+    __weak typeof(self)weakSelf = self;
+    [self moveIndicatorToIndex:index animated:YES completion:^{
+        weakSelf.movingIndicatorWithButtonSelection = NO;
+    }];
+
+    if (self.scrollView && index != scrollViewIndex) {
+        CGPoint offset = CGPointMake(CGRectGetWidth(self.scrollView.bounds) * index, 0);
+        [self.scrollView setContentOffset:offset animated:YES];
+    }
+
     if ([self.delegate conformsToProtocol:@protocol(NEUPagingSegmentedControlDelegate)] &&
         [self.delegate respondsToSelector:@selector(pagingSegmentedControl:didSelectSegmentAtIndex:)]) {
         [self.delegate pagingSegmentedControl:self didSelectSegmentAtIndex:index];
@@ -225,15 +298,13 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 
 - (CGPoint)indicatorCenterAtIndex:(NSInteger)index
 {
-    NSInteger segmentsCount = MAX(1, [self.segmentButtons count]);
-    CGFloat segmentWidth = CGRectGetWidth(self.bounds) / segmentsCount;
     return (CGPoint) {
-        .x = floorf(segmentWidth / 2) + segmentWidth * index,
+        .x = floorf(self.buttonWidth / 2) + self.buttonWidth * index,
         .y = self.indicatorView.center.y
     };
 }
 
-- (void)moveIndicatorToIndex:(NSInteger)index animated:(BOOL)animated
+- (void)moveIndicatorToIndex:(NSInteger)index animated:(BOOL)animated completion:(void (^)(void))completion
 {
     if (index < 0 || index >= [self.segmentTitles count]) {
         return;
@@ -249,6 +320,26 @@ static const CGFloat kDefaultIndicatorHeight = 8;
         [weakSelf.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
             button.selected = (idx == index);
         }];
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
+- (void)shiftIndicatorByPercentage:(float)offsetPercentage
+{
+    if (offsetPercentage < -1 || offsetPercentage > 1) {
+        return;
+    }
+
+    CGPoint indicatorCenter = [self indicatorCenterAtIndex:self.currentIndex];
+    indicatorCenter.x += self.buttonWidth * offsetPercentage;
+    self.indicatorView.center = indicatorCenter;
+
+    // Hilight corresponding section
+    NSInteger correspondingIndex = floorf(indicatorCenter.x / self.buttonWidth);
+    [self.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
+        button.selected = (idx == correspondingIndex);
     }];
 }
 

@@ -24,6 +24,9 @@
 // Set up paging segments with given titles
 @property (nonatomic, copy) NSArray *segmentTitles;
 
+// Assign the scroll view that corresponds to the paging indicator
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 // Component colours
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, copy) UIColor *borderColor;
