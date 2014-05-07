@@ -21,6 +21,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 @property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;
 @property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
+@property (nonatomic, strong) NSMutableArray *buttonSeparators;
 @property (nonatomic, strong) NEUBorderedView *bottomBorder;
 @property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
@@ -114,6 +115,14 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         [self layoutButtons:_segmentButtons];
         [self moveIndicatorToIndex:0 animated:NO completion:nil];
     }
+}
+
+- (NSMutableArray *)buttonSeparators
+{
+    if (!_buttonSeparators) {
+        _buttonSeparators = [[NSMutableArray alloc] init];
+    }
+    return _buttonSeparators;
 }
 
 - (NEUBorderedView *)bottomBorder
@@ -234,6 +243,11 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 - (void)layoutButtons:(NSArray *)buttons
 {
+    for (UIView *separator in self.buttonSeparators) {
+        [separator removeFromSuperview];
+    }
+    [self.buttonSeparators removeAllObjects];
+
     if ([buttons count] == 0) {
         return;
     }
@@ -278,6 +292,23 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
                                                          attribute:NSLayoutAttributeLeft
                                                         multiplier:1
                                                           constant:0]];
+
+        // Add separator between buttons
+        NEUBorderedView *separator = [[NEUBorderedView alloc] init];
+        separator.borderType = NEUBorderTypeLeft;
+        [separator setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.buttonSeparators addObject:separator];
+        [self addSubview:separator];
+
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(padding)-[separator]-(padding)-|"
+                                                                     options:kNilOptions
+                                                                     metrics:@{@"padding": @(10)}
+                                                                       views:NSDictionaryOfVariableBindings(separator)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[separator(1)][thisButton]"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(separator, thisButton)]];
     }
 
     UIButton *firstButton = [buttons firstObject];
