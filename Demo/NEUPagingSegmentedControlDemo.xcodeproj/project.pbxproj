@@ -22,7 +22,7 @@
 		B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6D81917FBA500A01E88 /* NEUViewController.m */; };
 		B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */; };
 		B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */; };
-		B5A8C6E31917FE2B00A01E88 /* NEUHorizontalLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */; };
+		B5A8C6E61917FF7900A01E88 /* NEUBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,8 @@
 		B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUPagingSegmentedControl.m; path = ../../NEUPagingSegmentedControl/NEUPagingSegmentedControl.m; sourceTree = "<group>"; };
 		B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUTriangleView.h; path = ../../NEUPagingSegmentedControl/NEUTriangleView.h; sourceTree = "<group>"; };
 		B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUTriangleView.m; path = ../../NEUPagingSegmentedControl/NEUTriangleView.m; sourceTree = "<group>"; };
-		B5A8C6E11917FE2B00A01E88 /* NEUHorizontalLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUHorizontalLine.h; path = ../../NEUPagingSegmentedControl/NEUHorizontalLine.h; sourceTree = "<group>"; };
-		B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUHorizontalLine.m; path = ../../NEUPagingSegmentedControl/NEUHorizontalLine.m; sourceTree = "<group>"; };
+		B5A8C6E41917FF7900A01E88 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUBorderedView.h; path = ../../NEUPagingSegmentedControl/NEUBorderedView.h; sourceTree = "<group>"; };
+		B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUBorderedView.m; path = ../../NEUPagingSegmentedControl/NEUBorderedView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,8 @@
 		B5A8C6DD1917FBB400A01E88 /* NEUPagingSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				B5A8C6E11917FE2B00A01E88 /* NEUHorizontalLine.h */,
-				B5A8C6E21917FE2B00A01E88 /* NEUHorizontalLine.m */,
+				B5A8C6E41917FF7900A01E88 /* NEUBorderedView.h */,
+				B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */,
 				B5A8C6DA1917FBAF00A01E88 /* NEUPagingSegmentedControl.h */,
 				B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */,
 				B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */,
@@ -270,7 +270,7 @@
 			files = (
 				B53D85241917F794009A7961 /* main.m in Sources */,
 				B53D85281917F794009A7961 /* NEUAppDelegate.m in Sources */,
-				B5A8C6E31917FE2B00A01E88 /* NEUHorizontalLine.m in Sources */,
+				B5A8C6E61917FF7900A01E88 /* NEUBorderedView.m in Sources */,
 				B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */,
 				B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */,
 				B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */,
