@@ -27,11 +27,22 @@
 // Assign the scroll view that corresponds to the paging indicator
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-// Component colours
+// Component colors
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, copy) UIColor *borderColor;
 @property (nonatomic, copy) UIColor *buttonSeparatorColor;
 @property (nonatomic, copy) UIColor *segmentTitleColor;
 @property (nonatomic, copy) UIColor *selectedSegmentTitleColor;
+
+/**
+ *  Initializes a paging segmented control with given parameters.
+ *
+ *  @param frame      The frame rectangle for the view.
+ *  @param titles     An array of NSString objects for segment titles.
+ *  @param scrollView The scroll view that corresponds to the paging indicator.
+ *
+ *  @return An initialized paging segmented control.
+ */
+- (instancetype)initWithFrame:(CGRect)frame segmentTitles:(NSArray *)titles scrollView:(UIScrollView *)scrollView;
 
 @end

@@ -61,7 +61,7 @@
 
 - (void)pagingSegmentedControl:(NEUPagingSegmentedControl *)segmentedControl didSelectSegmentAtIndex:(NSInteger)index
 {
-    NSLog(@"%s \n[Line:%03d] index %d selected", __PRETTY_FUNCTION__, __LINE__, index);
+    NSLog(@"%s \n[Line:%03d] index %@ selected", __PRETTY_FUNCTION__, __LINE__, @(index));
 }
 
 #pragma mark - Private Methods

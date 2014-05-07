@@ -154,7 +154,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     return _indicatorView;
 }
 
-#pragma mark - UIView
+#pragma mark - Initializer
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -177,6 +177,17 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     }
     return self;
 }
+
+- (instancetype)initWithFrame:(CGRect)frame segmentTitles:(NSArray *)titles scrollView:(UIScrollView *)scrollView
+{
+    if (self = [self initWithFrame:frame]) {
+        self.segmentTitles = titles;
+        self.scrollView = scrollView;
+    }
+    return self;
+}
+
+#pragma mark - UIView
 
 - (void)layoutSubviews
 {
