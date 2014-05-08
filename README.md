@@ -1,6 +1,8 @@
 NEUPagingSegmentedControl
 =========================
 
+[![Build Status](https://travis-ci.org/bcylin/NEUPagingSegmentedControl.svg?branch=release/0.1.0)](https://travis-ci.org/bcylin/NEUPagingSegmentedControl)
+
 A horizontal segmented control that works with UIScrollView.
 
 * Indicates the corresponding segment as the scroll view scrolls.
