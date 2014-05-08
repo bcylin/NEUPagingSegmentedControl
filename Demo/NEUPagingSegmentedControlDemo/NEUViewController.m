@@ -40,13 +40,7 @@
     self.scrollView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
 
     self.segments = @[@"Title 1", @"Title 2", @"Title 3", @"Title 4"];
-    for (NSInteger i = 0, count = [self.segments count]; i < count; i++) {
-        NEUBorderedView *view = [[NEUBorderedView alloc] init];
-        view.borderType = NEUBorderTypeAllBorders;
-        view.backgroundColor = [UIColor whiteColor];
-        view.borderColor = [UIColor grayColor];
-        [self.scrollView addSubview:view];
-    }
+    [self createScrollViewPagesWithSegments:self.segments];
 
     self.segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:slice];
     self.segmentedControl.segmentTitles = self.segments;
@@ -77,6 +71,30 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:65/255.0 green:105/255.0 blue:225/255.0 alpha:1];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+}
+
+- (void)createScrollViewPagesWithSegments:(NSArray *)segments
+{
+    UIFontDescriptor *fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
+
+    for (NSInteger i = 0, count = [segments count]; i < count; i++) {
+        NEUBorderedView *view = [[NEUBorderedView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+
+        view.borderType = NEUBorderTypeAllBorders;
+        view.backgroundColor = [UIColor whiteColor];
+        view.borderColor = [UIColor grayColor];
+
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor grayColor];
+        label.text = [@(i + 1) description];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        label.font = [UIFont fontWithDescriptor:fontDescriptor size:144];
+
+        [view addSubview:label];
+        [self.scrollView addSubview:view];
+    }
 }
 
 - (void)layoutScrollViewPages
