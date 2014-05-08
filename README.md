@@ -1,6 +1,8 @@
 NEUPagingSegmentedControl
 =========================
 
+[![Build Status](https://travis-ci.org/bcylin/NEUPagingSegmentedControl.svg?branch=release/0.1.0)](https://travis-ci.org/bcylin/NEUPagingSegmentedControl)
+
 A horizontal segmented control that works with UIScrollView.
 
 * Indicates the corresponding segment as the scroll view scrolls.
@@ -26,8 +28,16 @@ NEUPagingSegmentedControl requires ARC with iOS 7 and above.
 
 ## Installation
 
-Add files in `NEUPagingSegmentedControl` folder to an iOS project.
+* Install via [CocoaPods](http://guides.cocoapods.org/) by adding the following specification to `Podfile`.
+
+```
+pod 'NEUPagingSegmentedControl', :git => "http://github.com/bcylin/NEUPagingSegmentedControl.git"
+```
+
+or
+
+* Add files in `NEUPagingSegmentedControl` folder to an iOS project.
 
 ## License
 
-NEUPagingSegmentedControl is released under the MIT license. See LICENSE.md for more info.
+NEUPagingSegmentedControl is released under the MIT license. See [LICENSE.md](https://github.com/bcylin/NEUPagingSegmentedControl/blob/master/LICENSE.md) for more info.
