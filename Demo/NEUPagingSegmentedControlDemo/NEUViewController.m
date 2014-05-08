@@ -8,7 +8,7 @@
 
 #import "NEUViewController.h"
 #import "NEUPagingSegmentedControl.h"
-
+#import "NEUBorderedView.h"
 
 @interface NEUViewController () <NEUPagingSegmentedControlDelegate>
 @property (nonatomic, strong) NEUPagingSegmentedControl *segmentedControl;
@@ -32,22 +32,22 @@
     [super loadView];
     [self customizeAppearance];
 
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    CGRect slice, remainder;
+    CGRectDivide(self.view.bounds, &slice, &remainder, 44, CGRectMinYEdge);
+
+    self.scrollView = [[UIScrollView alloc] initWithFrame:remainder];
     self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.scrollView];
+    self.scrollView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
 
-    self.segments = @[@"0.2 Gray", @"0.3 Gray", @"0.4 Gray", @"0.5 Gray"];
-    for (id segment in self.segments) {
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:[segment floatValue]];
-        [self.scrollView addSubview:view];
-    }
+    self.segments = @[@"Title 1", @"Title 2", @"Title 3", @"Title 4"];
+    [self createScrollViewPagesWithSegments:self.segments];
 
-    CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44);
-    self.segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:frame];
+    self.segmentedControl = [[NEUPagingSegmentedControl alloc] initWithFrame:slice];
     self.segmentedControl.segmentTitles = self.segments;
     self.segmentedControl.scrollView = self.scrollView;
     self.segmentedControl.delegate = self;
+
+    [self.view addSubview:self.scrollView];
     [self.view addSubview:self.segmentedControl];
 }
 
@@ -73,16 +73,42 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
+- (void)createScrollViewPagesWithSegments:(NSArray *)segments
+{
+    UIFontDescriptor *fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
+
+    for (NSInteger i = 0, count = [segments count]; i < count; i++) {
+        NEUBorderedView *view = [[NEUBorderedView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+
+        view.borderType = NEUBorderTypeAllBorders;
+        view.backgroundColor = [UIColor whiteColor];
+        view.borderColor = [UIColor grayColor];
+
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor grayColor];
+        label.text = [@(i + 1) description];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        label.font = [UIFont fontWithDescriptor:fontDescriptor size:144];
+
+        [view addSubview:label];
+        [self.scrollView addSubview:view];
+    }
+}
+
 - (void)layoutScrollViewPages
 {
-    CGSize pageSize = self.view.bounds.size;
+    CGSize pageSize = self.scrollView.bounds.size;
     self.scrollView.contentSize = CGSizeMake(pageSize.width * [self.segments count], pageSize.height);
     [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        view.frame = (CGRect) {
+        CGRect pageFrame = (CGRect) {
             .origin.x = pageSize.width * idx,
             .origin.y = 0,
             .size = pageSize
         };
+        view.frame = CGRectInset(pageFrame, 20, 20);
+        [view setNeedsDisplay];
     }];
     CGPoint contentOffset = CGPointMake(pageSize.width * self.segmentedControl.currentIndex, 0);
     [self.scrollView setContentOffset:contentOffset animated:NO];

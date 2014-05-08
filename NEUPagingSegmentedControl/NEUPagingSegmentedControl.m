@@ -383,10 +383,6 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 - (void)shiftIndicatorByPercentage:(float)offsetPercentage
 {
-    if (offsetPercentage < -1 || offsetPercentage > 1) {
-        return;
-    }
-
     CGPoint indicatorCenter = [self indicatorCenterAtIndex:self.currentIndex];
     indicatorCenter.x += self.buttonWidth * offsetPercentage;
     self.indicatorView.center = indicatorCenter;
