@@ -34,10 +34,15 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, rect);
 
+    // Draw background
+    [self.backgroundColor setFill];
+    CGContextFillRect(context, rect);
+
     if (self.borderType == NEUBorderTypeNone) {
         return;
     }
 
+    // Draw borders
     [self.borderColor setStroke];
     CGFloat strokeWidth = 1 / [[UIScreen mainScreen] scale];
 
