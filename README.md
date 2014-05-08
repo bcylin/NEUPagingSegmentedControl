@@ -8,6 +8,8 @@ A horizontal segmented control that works with UIScrollView.
 * Indicates the corresponding segment as the scroll view scrolls.
 * Scrolls to a page by selecting the segment title.
 
+![Screenshot](https://raw.githubusercontent.com/bcylin/NEUPagingSegmentedControl/develop/Screenshots/Screenshot.png)
+
 ## Usage
 
 ```objc
@@ -30,7 +32,7 @@ NEUPagingSegmentedControl requires ARC with iOS 7 and above.
 
 * Install via [CocoaPods](http://guides.cocoapods.org/) by adding the following specification to `Podfile`.
 
-```
+```ruby
 pod 'NEUPagingSegmentedControl', :git => "http://github.com/bcylin/NEUPagingSegmentedControl.git"
 ```
 
