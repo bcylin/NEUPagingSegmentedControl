@@ -42,30 +42,30 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, rect);
+    CGContextClearRect(context, self.bounds);
 
     [self.innerColor setFill];
 
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
+    CGContextAddLineToPoint(context, CGRectGetMidX(self.bounds), CGRectGetMaxY(self.bounds));
+    CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextClosePath(context);
     CGContextFillPath(context);
 
     [self.borderColor setStroke];
 
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
+    CGContextAddLineToPoint(context, CGRectGetMidX(self.bounds), CGRectGetMaxY(self.bounds));
+    CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextSetLineWidth(context, 1 / [[UIScreen mainScreen] scale]);
     CGContextDrawPath(context, kCGPathStroke);
 
     // Trim 1 pt off the border from the top
     [self.innerColor setStroke];
 
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
+    CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextSetLineWidth(context, 1);
     CGContextDrawPath(context, kCGPathStroke);
 }

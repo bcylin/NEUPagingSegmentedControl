@@ -32,11 +32,11 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, rect);
+    CGContextClearRect(context, self.bounds);
 
     // Draw background
     [self.backgroundColor setFill];
-    CGContextFillRect(context, rect);
+    CGContextFillRect(context, self.bounds);
 
     if (self.borderType == NEUBorderTypeNone) {
         return;
@@ -50,26 +50,26 @@
     CGContextSetLineWidth(context, strokeWidth);
 
     if (self.borderType & NEUBorderTypeTop) {
-        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect) + strokeWidth);
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect) + strokeWidth);
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds) + strokeWidth);
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds) + strokeWidth);
         CGContextDrawPath(context, kCGPathStroke);
     }
 
     if (self.borderType & NEUBorderTypeRight) {
-        CGContextMoveToPoint(context, CGRectGetMaxX(rect) - strokeWidth, CGRectGetMinY(rect));
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect) - strokeWidth, CGRectGetMaxY(rect));
+        CGContextMoveToPoint(context, CGRectGetMaxX(self.bounds) - strokeWidth, CGRectGetMinY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds) - strokeWidth, CGRectGetMaxY(self.bounds));
         CGContextDrawPath(context, kCGPathStroke);
     }
 
     if (self.borderType & NEUBorderTypeBottom) {
-        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds));
         CGContextDrawPath(context, kCGPathStroke);
     }
 
     if (self.borderType & NEUBorderTypeLeft) {
-        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-        CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+        CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMaxY(self.bounds));
+        CGContextAddLineToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
         CGContextDrawPath(context, kCGPathStroke);
     }
 }
