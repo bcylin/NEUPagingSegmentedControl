@@ -35,7 +35,7 @@
     CGContextClearRect(context, self.bounds);
 
     // Draw background
-    [self.backgroundColor setFill];
+    CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
     CGContextFillRect(context, self.bounds);
 
     if (self.borderType == NEUBorderTypeNone) {
@@ -43,11 +43,11 @@
     }
 
     // Draw borders
-    [self.borderColor setStroke];
     CGFloat strokeWidth = 1 / [[UIScreen mainScreen] scale];
 
     CGContextSetShouldAntialias(context, NO);
     CGContextSetLineWidth(context, strokeWidth);
+    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
 
     if (self.borderType & NEUBorderTypeTop) {
         CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds) + strokeWidth);

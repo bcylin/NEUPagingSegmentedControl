@@ -44,29 +44,29 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, self.bounds);
 
-    [self.innerColor setFill];
-
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextAddLineToPoint(context, CGRectGetMidX(self.bounds), CGRectGetMaxY(self.bounds));
     CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextClosePath(context);
-    CGContextFillPath(context);
 
-    [self.borderColor setStroke];
+    CGContextSetFillColorWithColor(context, self.innerColor.CGColor);
+    CGContextFillPath(context);
 
     CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextAddLineToPoint(context, CGRectGetMidX(self.bounds), CGRectGetMaxY(self.bounds));
     CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextSetLineWidth(context, 1 / [[UIScreen mainScreen] scale]);
+
+    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
     CGContextDrawPath(context, kCGPathStroke);
 
     // Trim 1 pt off the border from the top
-    [self.innerColor setStroke];
-
     CGContextMoveToPoint(context, CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextAddLineToPoint(context, CGRectGetMaxX(self.bounds), CGRectGetMinY(self.bounds));
     CGContextSetLineWidth(context, 1);
+
+    CGContextSetStrokeColorWithColor(context, self.innerColor.CGColor);
     CGContextDrawPath(context, kCGPathStroke);
 }
 
