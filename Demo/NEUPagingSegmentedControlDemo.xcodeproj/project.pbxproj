@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B525DD321ACAF8C10099E3B8 /* NEUBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B525DD2D1ACAF8C10099E3B8 /* NEUBorderedView.m */; };
+		B525DD331ACAF8C10099E3B8 /* NEUPagingSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B525DD2F1ACAF8C10099E3B8 /* NEUPagingSegmentedControl.m */; };
+		B525DD341ACAF8C10099E3B8 /* NEUTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B525DD311ACAF8C10099E3B8 /* NEUTriangleView.m */; };
 		B53D85181917F794009A7961 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53D85171917F794009A7961 /* Foundation.framework */; };
 		B53D851A1917F794009A7961 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53D85191917F794009A7961 /* CoreGraphics.framework */; };
 		B53D851C1917F794009A7961 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53D851B1917F794009A7961 /* UIKit.framework */; };
@@ -20,9 +23,6 @@
 		B53D853B1917F794009A7961 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B53D85391917F794009A7961 /* InfoPlist.strings */; };
 		B53D853D1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B53D853C1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m */; };
 		B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6D81917FBA500A01E88 /* NEUViewController.m */; };
-		B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */; };
-		B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */; };
-		B5A8C6E61917FF7900A01E88 /* NEUBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B525DD2C1ACAF8C10099E3B8 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUBorderedView.h; path = ../../Classes/NEUBorderedView.h; sourceTree = "<group>"; };
+		B525DD2D1ACAF8C10099E3B8 /* NEUBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUBorderedView.m; path = ../../Classes/NEUBorderedView.m; sourceTree = "<group>"; };
+		B525DD2E1ACAF8C10099E3B8 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUPagingSegmentedControl.h; path = ../../Classes/NEUPagingSegmentedControl.h; sourceTree = "<group>"; };
+		B525DD2F1ACAF8C10099E3B8 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUPagingSegmentedControl.m; path = ../../Classes/NEUPagingSegmentedControl.m; sourceTree = "<group>"; };
+		B525DD301ACAF8C10099E3B8 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUTriangleView.h; path = ../../Classes/NEUTriangleView.h; sourceTree = "<group>"; };
+		B525DD311ACAF8C10099E3B8 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUTriangleView.m; path = ../../Classes/NEUTriangleView.m; sourceTree = "<group>"; };
 		B53D85141917F794009A7961 /* NEUPagingSegmentedControlDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NEUPagingSegmentedControlDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53D85171917F794009A7961 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B53D85191917F794009A7961 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,12 +60,6 @@
 		B53D853C1917F794009A7961 /* NEUPagingSegmentedControlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEUPagingSegmentedControlDemoTests.m; sourceTree = "<group>"; };
 		B5A8C6D71917FBA500A01E88 /* NEUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUViewController.h; sourceTree = "<group>"; };
 		B5A8C6D81917FBA500A01E88 /* NEUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEUViewController.m; sourceTree = "<group>"; };
-		B5A8C6DA1917FBAF00A01E88 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUPagingSegmentedControl.h; path = ../../NEUPagingSegmentedControl/NEUPagingSegmentedControl.h; sourceTree = "<group>"; };
-		B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUPagingSegmentedControl.m; path = ../../NEUPagingSegmentedControl/NEUPagingSegmentedControl.m; sourceTree = "<group>"; };
-		B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUTriangleView.h; path = ../../NEUPagingSegmentedControl/NEUTriangleView.h; sourceTree = "<group>"; };
-		B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUTriangleView.m; path = ../../NEUPagingSegmentedControl/NEUTriangleView.m; sourceTree = "<group>"; };
-		B5A8C6E41917FF7900A01E88 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUBorderedView.h; path = ../../NEUPagingSegmentedControl/NEUBorderedView.h; sourceTree = "<group>"; };
-		B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUBorderedView.m; path = ../../NEUPagingSegmentedControl/NEUBorderedView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,12 +162,12 @@
 		B5A8C6DD1917FBB400A01E88 /* NEUPagingSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				B5A8C6E41917FF7900A01E88 /* NEUBorderedView.h */,
-				B5A8C6E51917FF7900A01E88 /* NEUBorderedView.m */,
-				B5A8C6DA1917FBAF00A01E88 /* NEUPagingSegmentedControl.h */,
-				B5A8C6DB1917FBAF00A01E88 /* NEUPagingSegmentedControl.m */,
-				B5A8C6DE1917FCF300A01E88 /* NEUTriangleView.h */,
-				B5A8C6DF1917FCF300A01E88 /* NEUTriangleView.m */,
+				B525DD2C1ACAF8C10099E3B8 /* NEUBorderedView.h */,
+				B525DD2D1ACAF8C10099E3B8 /* NEUBorderedView.m */,
+				B525DD2E1ACAF8C10099E3B8 /* NEUPagingSegmentedControl.h */,
+				B525DD2F1ACAF8C10099E3B8 /* NEUPagingSegmentedControl.m */,
+				B525DD301ACAF8C10099E3B8 /* NEUTriangleView.h */,
+				B525DD311ACAF8C10099E3B8 /* NEUTriangleView.m */,
 			);
 			name = NEUPagingSegmentedControl;
 			sourceTree = "<group>";
@@ -269,11 +269,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53D85241917F794009A7961 /* main.m in Sources */,
+				B525DD341ACAF8C10099E3B8 /* NEUTriangleView.m in Sources */,
 				B53D85281917F794009A7961 /* NEUAppDelegate.m in Sources */,
-				B5A8C6E61917FF7900A01E88 /* NEUBorderedView.m in Sources */,
-				B5A8C6DC1917FBAF00A01E88 /* NEUPagingSegmentedControl.m in Sources */,
-				B5A8C6E01917FCF300A01E88 /* NEUTriangleView.m in Sources */,
+				B525DD321ACAF8C10099E3B8 /* NEUBorderedView.m in Sources */,
 				B5A8C6D91917FBA500A01E88 /* NEUViewController.m in Sources */,
+				B525DD331ACAF8C10099E3B8 /* NEUPagingSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
