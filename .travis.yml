@@ -3,4 +3,4 @@ before_script:
   - "export LANG=en_US.UTF-8"
   - "cd Demo"
 script:
-  - "xctool -project NEUPagingSegmentedControlDemo.xcodeproj -scheme NEUPagingSegmentedControlDemo -sdk iphonesimulator build"
+  - "xctool -workspace NEUPagingSegmentedControlDemo.xcworkspace -scheme NEUPagingSegmentedControlDemo -sdk iphonesimulator clean build"
