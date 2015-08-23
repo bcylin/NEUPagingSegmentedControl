@@ -1,5 +1,5 @@
 //
-//  NEUViewController.h
+//  AppDelegate.h
 //  NEUPagingSegmentedControlDemo
 //
 //  Created by Ben on 06/05/2014.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NEUViewController : UIViewController
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end

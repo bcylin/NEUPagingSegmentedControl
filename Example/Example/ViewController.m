@@ -1,22 +1,22 @@
 //
-//  NEUViewController.m
+//  ViewController.m
 //  NEUPagingSegmentedControlDemo
 //
 //  Created by Ben on 06/05/2014.
 //  Copyright (c) 2014 bcylin. All rights reserved.
 //
 
-#import "NEUViewController.h"
+#import "ViewController.h"
 #import "NEUPagingSegmentedControl.h"
 #import "NEUBorderedView.h"
 
-@interface NEUViewController () <NEUPagingSegmentedControlDelegate>
+@interface ViewController () <NEUPagingSegmentedControlDelegate>
 @property (nonatomic, strong) NEUPagingSegmentedControl *segmentedControl;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *segments;
 @end
 
-@implementation NEUViewController
+@implementation ViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
