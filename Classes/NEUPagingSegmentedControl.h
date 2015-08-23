@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+//! Project version number for NEUPagingSegmentedControl.
+FOUNDATION_EXPORT double NEUPagingSegmentedControlVersionNumber;
+
+//! Project version string for NEUPagingSegmentedControl.
+FOUNDATION_EXPORT const unsigned char NEUPagingSegmentedControlVersionString[];
+
+
 @class NEUPagingSegmentedControl;
 
 @protocol NEUPagingSegmentedControlDelegate <NSObject>
