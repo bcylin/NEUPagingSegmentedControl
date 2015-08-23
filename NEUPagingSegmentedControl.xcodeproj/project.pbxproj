@@ -32,7 +32,7 @@
 		B595642C1B89B34300B82C60 /* NEUPagingSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NEUPagingSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59564301B89B34300B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B59564311B89B34300B82C60 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEUPagingSegmentedControl.h; sourceTree = "<group>"; };
-		B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NEUPagingSegmentedControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NEUPagingSegmentedControlTests.xctest; path = "NEUPagingSegmentedControlTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B595643D1B89B34300B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B595643E1B89B34300B82C60 /* NEUPagingSegmentedControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEUPagingSegmentedControlTests.m; sourceTree = "<group>"; };
 		B59564491B89B40700B82C60 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUBorderedView.h; sourceTree = "<group>"; };
@@ -145,9 +145,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl */ = {
+		B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B59564421B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControl" */;
+			buildConfigurationList = B59564421B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControl-iOS" */;
 			buildPhases = (
 				B59564271B89B34300B82C60 /* Sources */,
 				B59564281B89B34300B82C60 /* Frameworks */,
@@ -158,14 +158,14 @@
 			);
 			dependencies = (
 			);
-			name = NEUPagingSegmentedControl;
+			name = "NEUPagingSegmentedControl-iOS";
 			productName = NEUPagingSegmentedControl;
 			productReference = B595642C1B89B34300B82C60 /* NEUPagingSegmentedControl.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B59564361B89B34300B82C60 /* NEUPagingSegmentedControlTests */ = {
+		B59564361B89B34300B82C60 /* NEUPagingSegmentedControlTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B59564451B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControlTests" */;
+			buildConfigurationList = B59564451B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControlTests-iOS" */;
 			buildPhases = (
 				B59564331B89B34300B82C60 /* Sources */,
 				B59564341B89B34300B82C60 /* Frameworks */,
@@ -176,7 +176,7 @@
 			dependencies = (
 				B595643A1B89B34300B82C60 /* PBXTargetDependency */,
 			);
-			name = NEUPagingSegmentedControlTests;
+			name = "NEUPagingSegmentedControlTests-iOS";
 			productName = NEUPagingSegmentedControlTests;
 			productReference = B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -210,8 +210,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl */,
-				B59564361B89B34300B82C60 /* NEUPagingSegmentedControlTests */,
+				B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl-iOS */,
+				B59564361B89B34300B82C60 /* NEUPagingSegmentedControlTests-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -257,7 +257,7 @@
 /* Begin PBXTargetDependency section */
 		B595643A1B89B34300B82C60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl */;
+			target = B595642B1B89B34300B82C60 /* NEUPagingSegmentedControl-iOS */;
 			targetProxy = B59564391B89B34300B82C60 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -361,7 +361,7 @@
 				INFOPLIST_FILE = NEUPagingSegmentedControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NEUPagingSegmentedControl;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -376,7 +376,7 @@
 				INFOPLIST_FILE = NEUPagingSegmentedControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NEUPagingSegmentedControl;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -423,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B59564421B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControl" */ = {
+		B59564421B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControl-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B59564431B89B34300B82C60 /* Debug */,
@@ -432,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B59564451B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControlTests" */ = {
+		B59564451B89B34300B82C60 /* Build configuration list for PBXNativeTarget "NEUPagingSegmentedControlTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B59564461B89B34300B82C60 /* Debug */,
