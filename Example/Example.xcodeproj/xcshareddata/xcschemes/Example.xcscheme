@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B53D85131917F794009A7961"
-               BuildableName = "NEUPagingSegmentedControlDemo.app"
-               BlueprintName = "NEUPagingSegmentedControlDemo"
-               ReferencedContainer = "container:NEUPagingSegmentedControlDemo.xcodeproj">
+               BlueprintIdentifier = "B59564CE1B89FDA700B82C60"
+               BuildableName = "Example.app"
+               BlueprintName = "Example"
+               ReferencedContainer = "container:Example.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B59564E71B89FDA800B82C60"
+               BuildableName = "ExampleTests.xctest"
+               BlueprintName = "ExampleTests"
+               ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B53D852E1917F794009A7961"
-               BuildableName = "NEUPagingSegmentedControlDemoTests.xctest"
-               BlueprintName = "NEUPagingSegmentedControlDemoTests"
-               ReferencedContainer = "container:NEUPagingSegmentedControlDemo.xcodeproj">
+               BlueprintIdentifier = "B59564E71B89FDA800B82C60"
+               BuildableName = "ExampleTests.xctest"
+               BlueprintName = "ExampleTests"
+               ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53D85131917F794009A7961"
-            BuildableName = "NEUPagingSegmentedControlDemo.app"
-            BlueprintName = "NEUPagingSegmentedControlDemo"
-            ReferencedContainer = "container:NEUPagingSegmentedControlDemo.xcodeproj">
+            BlueprintIdentifier = "B59564CE1B89FDA700B82C60"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -58,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53D85131917F794009A7961"
-            BuildableName = "NEUPagingSegmentedControlDemo.app"
-            BlueprintName = "NEUPagingSegmentedControlDemo"
-            ReferencedContainer = "container:NEUPagingSegmentedControlDemo.xcodeproj">
+            BlueprintIdentifier = "B59564CE1B89FDA700B82C60"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B53D85131917F794009A7961"
-            BuildableName = "NEUPagingSegmentedControlDemo.app"
-            BlueprintName = "NEUPagingSegmentedControlDemo"
-            ReferencedContainer = "container:NEUPagingSegmentedControlDemo.xcodeproj">
+            BlueprintIdentifier = "B59564CE1B89FDA700B82C60"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

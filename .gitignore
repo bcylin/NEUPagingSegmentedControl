@@ -26,7 +26,9 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+# Carthage
+Carthage
+
 # CocoaPods
 Pods
-*.xcworkspace
 

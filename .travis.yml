@@ -1,8 +1,11 @@
 language: objective-c
+osx_image: xcode6.4
 before_install:
-  - "if test -z $(brew list | grep -i xcproj); then brew install xcproj; fi"
-  - "cd Demo"
-before_script:
-  - "export LANG=en_US.UTF-8"
+  - if test -z $(brew list | grep -i xcproj); then brew install xcproj; fi
+  - export LANG=en_US.UTF-8
+install:
+  - bundle install --without development --deployment --jobs=3 --retry=3
+  - bundle exec pod install
 script:
-  - "xctool -workspace NEUPagingSegmentedControlDemo.xcworkspace -scheme NEUPagingSegmentedControlDemo -sdk iphonesimulator clean build"
+  - xctool -workspace NEUPagingSegmentedControl.xcworkspace -scheme NEUPagingSegmentedControl-iOS -sdk iphonesimulator clean build
+  - xctool -workspace NEUPagingSegmentedControl.xcworkspace -scheme Example -sdk iphonesimulator clean build
