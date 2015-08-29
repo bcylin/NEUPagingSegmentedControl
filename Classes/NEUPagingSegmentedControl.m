@@ -62,6 +62,11 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
                      context:kNEUScrollViewObservationContext];
 }
 
+- (void)setShowsIndicatorView:(BOOL)showsIndicatorView
+{
+  self.indicatorView.hidden = !showsIndicatorView;
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
@@ -166,6 +171,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
         [self addSubview:self.bottomBorder];
         self.indicatorView.frame = CGRectMake(0, frame.size.height - 1, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
         [self addSubview:self.indicatorView];
+        self.showsIndicatorView = YES;
 
         // Default colours
         self.tintColor = [UIColor clearColor];

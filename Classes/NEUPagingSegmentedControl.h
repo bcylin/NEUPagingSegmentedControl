@@ -34,6 +34,9 @@ FOUNDATION_EXPORT const unsigned char NEUPagingSegmentedControlVersionString[];
 // Assign the scroll view that corresponds to the paging indicator
 @property (nonatomic, strong) UIScrollView *scrollView;
 
+// When YES, show indicator view. Default is YES.
+@property (nonatomic) BOOL showsIndicatorView;
+
 // Component colors
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, copy) UIColor *borderColor;
