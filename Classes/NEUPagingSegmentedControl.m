@@ -14,7 +14,6 @@ static const CGFloat kDefaultIndicatorWidth = 12;
 static const CGFloat kDefaultIndicatorHeight = 8;
 
 static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
-static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 @interface NEUPagingSegmentedControl() {
     NEUTriangleView *_indicatorView;
@@ -34,7 +33,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setSegmentTitles:(NSArray *)segmentTitles
 {
     if (![_segmentTitles isEqual:segmentTitles]) {
+        [self willChangeValueForKey:NSStringFromSelector(@selector(segmentTitles))];
         _segmentTitles = [segmentTitles copy];
+        [self didChangeValueForKey:NSStringFromSelector(@selector(segmentTitles))];
+
         NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:[_segmentTitles count]];
         for (NSString *title in _segmentTitles) {
             [buttons addObject:[self buttonWithTitle:title]];
@@ -46,10 +48,13 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setScrollView:(UIScrollView *)scrollView
 {
     [_scrollView removeObserver:self
-                     forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                     forKeyPath:NSStringFromSelector(@selector(contentOffset))
                         context:kNEUScrollViewObservationContext];
 
+    [self willChangeValueForKey:NSStringFromSelector(@selector(scrollView))];
     _scrollView = scrollView;
+    [self didChangeValueForKey:NSStringFromSelector(@selector(scrollView))];
+
     _scrollView.scrollsToTop = NO;
     _scrollView.pagingEnabled = YES;
     _scrollView.directionalLockEnabled = YES;
@@ -58,7 +63,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     _scrollView.showsHorizontalScrollIndicator = NO;
 
     [_scrollView addObserver:self
-                  forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                  forKeyPath:NSStringFromSelector(@selector(contentOffset))
                      options:NSKeyValueObservingOptionNew
                      context:kNEUScrollViewObservationContext];
 }
@@ -74,7 +79,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setBorderColor:(UIColor *)borderColor
 {
     if (![_borderColor isEqual:borderColor]) {
+        [self willChangeValueForKey:NSStringFromSelector(@selector(borderColor))];
         _borderColor = [borderColor copy];
+        [self didChangeValueForKey:NSStringFromSelector(@selector(borderColor))];
+
         self.bottomBorder.borderColor= borderColor;
         _indicatorView.borderColor = borderColor;
     }
@@ -83,7 +91,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setButtonSeparatorColor:(UIColor *)buttonSeparatorColor
 {
     if (![_buttonSeparatorColor isEqual:buttonSeparatorColor]) {
+        [self willChangeValueForKey:NSStringFromSelector(@selector(buttonSeparatorColor))];
         _buttonSeparatorColor = [buttonSeparatorColor copy];
+        [self didChangeValueForKey:NSStringFromSelector(@selector(buttonSeparatorColor))];
+
         for (NEUBorderedView *view in self.buttonSeparators) {
             view.borderColor = buttonSeparatorColor;
         }
@@ -93,7 +104,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setSegmentTitleColor:(UIColor *)segmentTitleColor
 {
     if (![_segmentTitleColor isEqual:segmentTitleColor]) {
-        _segmentTitleColor = segmentTitleColor;
+        [self willChangeValueForKey:NSStringFromSelector(@selector(segmentTitleColor))];
+        _segmentTitleColor = [segmentTitleColor copy];
+        [self didChangeValueForKey:NSStringFromSelector(@selector(segmentTitleColor))];
+
         for (UIButton *button in self.segmentButtons) {
             [button setTitleColor:segmentTitleColor forState:UIControlStateNormal];
         }
@@ -103,7 +117,10 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setSelectedSegmentTitleColor:(UIColor *)selectedSegmentTitleColor
 {
     if (![_selectedSegmentTitleColor isEqual:selectedSegmentTitleColor]) {
-        _selectedSegmentTitleColor = selectedSegmentTitleColor;
+        [self willChangeValueForKey:NSStringFromSelector(@selector(selectedSegmentTitleColor))];
+        _selectedSegmentTitleColor = [selectedSegmentTitleColor copy];
+        [self didChangeValueForKey:NSStringFromSelector(@selector(selectedSegmentTitleColor))];
+
         for (UIButton *button in self.segmentButtons) {
             [button setTitleColor:selectedSegmentTitleColor forState:UIControlStateSelected];
         }
@@ -121,10 +138,13 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 {
     if (_segmentButtons != segmentButtons) {
         for (UIButton *button in _segmentButtons) {
-            // Remove existed buttons
+            // Remove existing buttons
             [button removeFromSuperview];
         }
+        [self willChangeValueForKey:NSStringFromSelector(@selector(segmentButtons))];
         _segmentButtons = segmentButtons;
+        [self didChangeValueForKey:NSStringFromSelector(@selector(segmentButtons))];
+
         [self layoutButtons:_segmentButtons];
         [self moveIndicatorToIndex:0 animated:NO completion:nil];
     }
@@ -209,7 +229,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
+    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:NSStringFromSelector(@selector(contentOffset))]) {
         if ([self isMovingIndicatorWithButtonSelection]) {
             return;
         }
