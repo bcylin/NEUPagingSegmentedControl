@@ -29,16 +29,16 @@
 
 /* Begin PBXFileReference section */
 		B595642C1B89B34300B82C60 /* NEUPagingSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NEUPagingSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B59564301B89B34300B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NEUPagingSegmentedControlTests.xctest; path = "NEUPagingSegmentedControlTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59564301B89B34300B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
+		B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NEUPagingSegmentedControlTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B595643D1B89B34300B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B595643E1B89B34300B82C60 /* NEUPagingSegmentedControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEUPagingSegmentedControlTests.m; sourceTree = "<group>"; };
-		B59564491B89B40700B82C60 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUBorderedView.h; sourceTree = "<group>"; };
-		B595644A1B89B40700B82C60 /* NEUBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEUBorderedView.m; sourceTree = "<group>"; };
-		B595644B1B89B40700B82C60 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUPagingSegmentedControl.h; sourceTree = "<group>"; };
-		B595644C1B89B40700B82C60 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEUPagingSegmentedControl.m; sourceTree = "<group>"; };
-		B595644D1B89B40700B82C60 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEUTriangleView.h; sourceTree = "<group>"; };
-		B595644E1B89B40700B82C60 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEUTriangleView.m; sourceTree = "<group>"; };
+		B59564491B89B40700B82C60 /* NEUBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUBorderedView.h; path = Source/NEUBorderedView.h; sourceTree = SOURCE_ROOT; };
+		B595644A1B89B40700B82C60 /* NEUBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUBorderedView.m; path = Source/NEUBorderedView.m; sourceTree = SOURCE_ROOT; };
+		B595644B1B89B40700B82C60 /* NEUPagingSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUPagingSegmentedControl.h; path = Source/NEUPagingSegmentedControl.h; sourceTree = SOURCE_ROOT; };
+		B595644C1B89B40700B82C60 /* NEUPagingSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUPagingSegmentedControl.m; path = Source/NEUPagingSegmentedControl.m; sourceTree = SOURCE_ROOT; };
+		B595644D1B89B40700B82C60 /* NEUTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NEUTriangleView.h; path = Source/NEUTriangleView.h; sourceTree = SOURCE_ROOT; };
+		B595644E1B89B40700B82C60 /* NEUTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NEUTriangleView.m; path = Source/NEUTriangleView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,6 @@
 		B59564221B89B34300B82C60 = {
 			isa = PBXGroup;
 			children = (
-				B59564481B89B40700B82C60 /* Classes */,
 				B595642E1B89B34300B82C60 /* NEUPagingSegmentedControl */,
 				B595643B1B89B34300B82C60 /* NEUPagingSegmentedControlTests */,
 				B595642D1B89B34300B82C60 /* Products */,
@@ -74,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				B595642C1B89B34300B82C60 /* NEUPagingSegmentedControl.framework */,
-				B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */,
+				B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +82,12 @@
 			isa = PBXGroup;
 			children = (
 				B595642F1B89B34300B82C60 /* Supporting Files */,
+				B59564491B89B40700B82C60 /* NEUBorderedView.h */,
+				B595644A1B89B40700B82C60 /* NEUBorderedView.m */,
+				B595644B1B89B40700B82C60 /* NEUPagingSegmentedControl.h */,
+				B595644C1B89B40700B82C60 /* NEUPagingSegmentedControl.m */,
+				B595644D1B89B40700B82C60 /* NEUTriangleView.h */,
+				B595644E1B89B40700B82C60 /* NEUTriangleView.m */,
 			);
 			path = NEUPagingSegmentedControl;
 			sourceTree = "<group>";
@@ -110,19 +115,6 @@
 				B595643D1B89B34300B82C60 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B59564481B89B40700B82C60 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B59564491B89B40700B82C60 /* NEUBorderedView.h */,
-				B595644A1B89B40700B82C60 /* NEUBorderedView.m */,
-				B595644B1B89B40700B82C60 /* NEUPagingSegmentedControl.h */,
-				B595644C1B89B40700B82C60 /* NEUPagingSegmentedControl.m */,
-				B595644D1B89B40700B82C60 /* NEUTriangleView.h */,
-				B595644E1B89B40700B82C60 /* NEUTriangleView.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,7 +166,7 @@
 			);
 			name = "NEUPagingSegmentedControlTests-iOS";
 			productName = NEUPagingSegmentedControlTests;
-			productReference = B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests.xctest */;
+			productReference = B59564371B89B34300B82C60 /* NEUPagingSegmentedControlTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -354,7 +346,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = NEUPagingSegmentedControl/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = NEUPagingSegmentedControl;
@@ -369,7 +361,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = NEUPagingSegmentedControl/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = NEUPagingSegmentedControl;

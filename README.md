@@ -55,7 +55,7 @@ github "bcylin/NEUPagingSegmentedControl" "develop"
 
 ### Install Manually
 
-* Copy files in the `Class` directory to an iOS project.
+* Copy files in the `Source` directory to an iOS project.
 
 ## License
 

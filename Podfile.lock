@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  NEUPagingSegmentedControl: b399d4451bf0cd98d3ec908bb4c02412fcb0faff
+  NEUPagingSegmentedControl: 7bc2569ee3dc460e432d13e003f0ccd9419f7c3e
 
 COCOAPODS: 0.38.2
