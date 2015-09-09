@@ -72,6 +72,17 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
 
 @synthesize indicatorView = _indicatorView;
 
+- (UIView *)indicatorView
+{
+    if (!_indicatorView) {
+        _indicatorView = [[NEUTriangleView alloc] init];
+        _indicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _indicatorView;
+}
+
+#pragma mark - Component Colors
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
@@ -170,15 +181,6 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
     return _bottomBorder;
 }
 
-- (NEUTriangleView *)indicatorView
-{
-    if (!_indicatorView) {
-        _indicatorView = [[NEUTriangleView alloc] init];
-        _indicatorView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    }
-    return _indicatorView;
-}
-
 #pragma mark - Initializer
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -193,7 +195,7 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
         self.indicatorView.frame = (CGRect){bottom, kDefaultIndicatorSize};
         [self addSubview:self.indicatorView];
 
-        // Default colours
+        // Default colors
         self.tintColor = [UIColor clearColor];
         self.backgroundColor = [UIColor whiteColor];
         self.borderColor = [UIColor grayColor];
@@ -341,14 +343,13 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
                                                         multiplier:1
                                                           constant:0]];
 
-        // Add separator between buttons
+        // Add a separator between buttons
         NEUBorderedView *separator = [[NEUBorderedView alloc] init];
         separator.borderType = NEUBorderTypeLeft;
         separator.borderColor = self.buttonSeparatorColor;
         [separator setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.buttonSeparators addObject:separator];
         [self addSubview:separator];
-
 
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(padding)-[separator]-(padding)-|"
                                                                      options:kNilOptions
@@ -413,7 +414,7 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
     indicatorCenter.x += self.buttonWidth * offsetPercentage;
     self.indicatorView.center = indicatorCenter;
 
-    // Hilight corresponding section
+    // Hilight the corresponding section
     NSInteger correspondingIndex = floorf(indicatorCenter.x / self.buttonWidth);
     [self.segmentButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         button.selected = (idx == correspondingIndex);
