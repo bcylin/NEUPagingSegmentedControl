@@ -17,7 +17,7 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
 static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 @interface NEUPagingSegmentedControl() {
-  NEUTriangleView *_indicatorView;
+    NEUTriangleView *_indicatorView;
 }
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
 @property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;

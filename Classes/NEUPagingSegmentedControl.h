@@ -28,16 +28,17 @@ FOUNDATION_EXPORT const unsigned char NEUPagingSegmentedControlVersionString[];
 @property (nonatomic, assign, readonly) NSUInteger currentIndex;
 @property (nonatomic, weak) id<NEUPagingSegmentedControlDelegate> delegate;
 
-// Set up paging segments with given titles
+/// Set up paging segments with an array of titles.
 @property (nonatomic, copy) NSArray *segmentTitles;
 
-// Assign the scroll view that corresponds to the paging indicator
+/// The scroll view that moves its contents along with the indicator.
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-// The paging indicator view
+/// The indicator view below the segment titles.
 @property (nonatomic, strong, readonly) UIView *indicatorView;
 
-// Component colors
+#pragma mark - Component Colors
+
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, copy) UIColor *borderColor;
 @property (nonatomic, copy) UIColor *buttonSeparatorColor;
