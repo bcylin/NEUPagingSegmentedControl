@@ -14,7 +14,6 @@ static const CGFloat kDefaultIndicatorWidth = 12;
 static const CGFloat kDefaultIndicatorHeight = 8;
 
 static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
-static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 @interface NEUPagingSegmentedControl() {
     NEUTriangleView *_indicatorView;
@@ -49,7 +48,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 - (void)setScrollView:(UIScrollView *)scrollView
 {
     [_scrollView removeObserver:self
-                     forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                     forKeyPath:NSStringFromSelector(@selector(contentOffset))
                         context:kNEUScrollViewObservationContext];
 
     [self willChangeValueForKey:NSStringFromSelector(@selector(scrollView))];
@@ -64,7 +63,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     _scrollView.showsHorizontalScrollIndicator = NO;
 
     [_scrollView addObserver:self
-                  forKeyPath:kNEUScrollViewContentOffsetKeyPath
+                  forKeyPath:NSStringFromSelector(@selector(contentOffset))
                      options:NSKeyValueObservingOptionNew
                      context:kNEUScrollViewObservationContext];
 }
@@ -230,7 +229,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:kNEUScrollViewContentOffsetKeyPath]) {
+    if (context == kNEUScrollViewObservationContext && [keyPath isEqualToString:NSStringFromSelector(@selector(contentOffset))]) {
         if ([self isMovingIndicatorWithButtonSelection]) {
             return;
         }
