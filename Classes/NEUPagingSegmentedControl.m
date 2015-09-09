@@ -10,8 +10,10 @@
 #import "NEUBorderedView.h"
 #import "NEUTriangleView.h"
 
-static const CGFloat kDefaultIndicatorWidth = 12;
-static const CGFloat kDefaultIndicatorHeight = 8;
+static const CGSize kDefaultIndicatorSize = (CGSize) {
+    .width = 12,
+    .height = 8
+};
 
 static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
 
@@ -185,9 +187,10 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
         self.clipsToBounds = NO;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 
-        self.bottomBorder.frame = CGRectMake(0, frame.size.height - 1, frame.size.width, 1);
+        CGPoint bottom = {0, frame.size.height - 1};
+        self.bottomBorder.frame = (CGRect){bottom, {frame.size.width, 1}};
         [self addSubview:self.bottomBorder];
-        self.indicatorView.frame = CGRectMake(0, frame.size.height - 1, kDefaultIndicatorWidth, kDefaultIndicatorHeight);
+        self.indicatorView.frame = (CGRect){bottom, kDefaultIndicatorSize};
         [self addSubview:self.indicatorView];
 
         // Default colours
