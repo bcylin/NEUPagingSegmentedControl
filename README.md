@@ -39,7 +39,7 @@ NEUPagingSegmentedControl requires ARC with iOS 7 and above.
 ```ruby
 platform :ios, '7.0'
 
-pod 'NEUPagingSegmentedControl', :git => 'http://github.com/bcylin/NEUPagingSegmentedControl.git'
+pod 'NEUPagingSegmentedControl', git: 'https://github.com/bcylin/NEUPagingSegmentedControl.git'
 ```
 
 ### Install via [Carthage](https://github.com/Carthage/Carthage)
@@ -48,7 +48,7 @@ pod 'NEUPagingSegmentedControl', :git => 'http://github.com/bcylin/NEUPagingSegm
 * Create a `Cartfile` with the following specification and run `carthage bootstrap`.
 
 ```
-github "bcylin/NEUPagingSegmentedControl" "develop"
+github "bcylin/NEUPagingSegmentedControl"
 ```
 
 * Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add the framework to an iOS project.
