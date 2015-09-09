@@ -16,14 +16,15 @@ static const CGFloat kDefaultIndicatorHeight = 8;
 static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationContext;
 static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
 
-@interface NEUPagingSegmentedControl ()
+@interface NEUPagingSegmentedControl() {
+    NEUTriangleView *_indicatorView;
+}
 @property (nonatomic, assign, readwrite) NSUInteger currentIndex;
 @property (nonatomic, assign, getter = isMovingIndicatorWithButtonSelection) BOOL movingIndicatorWithButtonSelection;
 @property (nonatomic, assign) CGFloat buttonWidth;
 @property (nonatomic, strong) NSArray *segmentButtons;
 @property (nonatomic, strong) NSMutableArray *buttonSeparators;
 @property (nonatomic, strong) NEUBorderedView *bottomBorder;
-@property (nonatomic, strong) NEUTriangleView *indicatorView;
 @end
 
 @implementation NEUPagingSegmentedControl
@@ -62,10 +63,12 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
                      context:kNEUScrollViewObservationContext];
 }
 
+@synthesize indicatorView = _indicatorView;
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
-    self.indicatorView.innerColor = backgroundColor;
+    _indicatorView.innerColor = backgroundColor;
 }
 
 - (void)setBorderColor:(UIColor *)borderColor
@@ -73,7 +76,7 @@ static NSString * const kNEUScrollViewContentOffsetKeyPath = @"contentOffset";
     if (![_borderColor isEqual:borderColor]) {
         _borderColor = [borderColor copy];
         self.bottomBorder.borderColor= borderColor;
-        self.indicatorView.borderColor = borderColor;
+        _indicatorView.borderColor = borderColor;
     }
 }
 
