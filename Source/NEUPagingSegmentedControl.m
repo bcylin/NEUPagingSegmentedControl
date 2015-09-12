@@ -238,19 +238,17 @@ static void * kNEUScrollViewObservationContext = &kNEUScrollViewObservationConte
         if ([self isMovingIndicatorWithButtonSelection]) {
             return;
         }
-        CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
-        CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
-
         // Shift indicator as scroll view scrolls
+        CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
         CGFloat xOffsetFromCurrentIndex = contentOffset.x - CGRectGetWidth(self.scrollView.bounds) * self.currentIndex;
         [self shiftIndicatorByPercentage:(xOffsetFromCurrentIndex / CGRectGetWidth(self.scrollView.bounds))];
 
+        // Update the current index directly, since the button's highlight is handled in shiftIndicatorByPercentage:
+        CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.bounds);
         NSInteger targetIndex = lroundf((float)contentOffset.x / scrollViewWidth);
         if (self.scrollView.bounds.origin.x == scrollViewWidth * targetIndex) {
-            // Update section index when scroll view reaches target page
-            [self moveIndicatorToIndex:targetIndex animated:NO completion:nil];
+            self.currentIndex = targetIndex;
         }
-
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
