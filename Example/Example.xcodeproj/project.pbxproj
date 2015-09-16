@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51C64FF1BA9C57A00CABA24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B51C65011BA9C57A00CABA24 /* InfoPlist.strings */; };
 		B59564D51B89FDA700B82C60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B59564D41B89FDA700B82C60 /* main.m */; };
 		B59564D81B89FDA700B82C60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B59564D71B89FDA700B82C60 /* AppDelegate.m */; };
 		B59564DB1B89FDA700B82C60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59564DA1B89FDA700B82C60 /* ViewController.m */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		1F6E0D665A8C0A3DD0735BD9 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		85B22713EA27BBE563601CA5 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51C65001BA9C57A00CABA24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B59564CF1B89FDA700B82C60 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59564D31B89FDA700B82C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B59564D41B89FDA700B82C60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				B59564D31B89FDA700B82C60 /* Info.plist */,
+				B51C65011BA9C57A00CABA24 /* InfoPlist.strings */,
 				B59564D41B89FDA700B82C60 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B59564E01B89FDA700B82C60 /* Images.xcassets in Resources */,
+				B51C64FF1BA9C57A00CABA24 /* InfoPlist.strings in Resources */,
 				B59564E31B89FDA700B82C60 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +217,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B51C65011BA9C57A00CABA24 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B51C65001BA9C57A00CABA24 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B59564E11B89FDA700B82C60 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
