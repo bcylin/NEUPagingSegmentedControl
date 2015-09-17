@@ -54,7 +54,10 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self layoutScrollViewPages];
+    // Only update scroll view's contents when the device rotates.
+    if (self.scrollView.contentSize.height != self.scrollView.bounds.size.height) {
+        [self layoutScrollViewPages];
+    }
 }
 
 #pragma mark - NEUPagingSegmentedControlDelegate
@@ -99,7 +102,9 @@
 
 - (void)layoutScrollViewPages
 {
-    CGSize pageSize = self.scrollView.bounds.size;
+    NSInteger currentIndex = self.segmentedControl.currentIndex;
+    CGSize pageSize = self.scrollView.frame.size;
+
     self.scrollView.contentSize = CGSizeMake(pageSize.width * [self.segments count], pageSize.height);
     [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
         CGRect pageFrame = (CGRect) {
@@ -110,7 +115,8 @@
         view.frame = CGRectInset(pageFrame, 20, 20);
         [view setNeedsDisplay];
     }];
-    CGPoint contentOffset = CGPointMake(pageSize.width * self.segmentedControl.currentIndex, 0);
+
+    CGPoint contentOffset = CGPointMake(pageSize.width * currentIndex, 0);
     [self.scrollView setContentOffset:contentOffset animated:NO];
 }
 
