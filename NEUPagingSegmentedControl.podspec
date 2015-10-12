@@ -9,7 +9,8 @@ Pod::Spec.new do |s|
   s.author        = "bcylin"
 
   s.platform      = :ios, "7.0"
+  s.requires_arc  = true
   s.source        = { git: "https://github.com/bcylin/NEUPagingSegmentedControl.git", tag: "v#{s.version}" }
   s.source_files  = "Source/*.{h,m}"
-  s.requires_arc  = true
+  s.public_header_files = "Source/NEUPagingSegmentedControl.h"
 end
