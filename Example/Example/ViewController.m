@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "NEUPagingSegmentedControl.h"
-#import "NEUBorderedView.h"
 
 @interface ViewController () <NEUPagingSegmentedControlDelegate>
 @property (nonatomic, strong) NEUPagingSegmentedControl *segmentedControl;
@@ -81,12 +80,14 @@
     UIFontDescriptor *fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
 
     for (NSInteger i = 0, count = [segments count]; i < count; i++) {
-        NEUBorderedView *view = [[NEUBorderedView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
 
-        view.borderType = NEUBorderTypeAllBorders;
         view.backgroundColor = [UIColor whiteColor];
-        view.borderColor = [UIColor grayColor];
+        view.layer.borderWidth = 1 / [[UIScreen mainScreen] scale];
+        view.layer.borderColor = [[UIColor grayColor] CGColor];
+        view.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+        view.layer.shouldRasterize = YES;
 
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor grayColor];

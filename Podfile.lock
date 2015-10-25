@@ -1,5 +1,5 @@
 PODS:
-  - NEUPagingSegmentedControl (0.2.0)
+  - NEUPagingSegmentedControl (0.2.1)
 
 DEPENDENCIES:
   - NEUPagingSegmentedControl (from `./`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  NEUPagingSegmentedControl: 53d8d8c87685e48354260fd7fcc24dfbdf79f29c
+  NEUPagingSegmentedControl: aaab0d6c490275434dfb04ba0ffeef55c8603bd9
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
