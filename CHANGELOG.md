@@ -1,4 +1,10 @@
-## Version 0.2.0
+## v0.2.1
+
+#### Breaking
+
+* Header files other than `NEUPagingSegmentedControl` are now private
+
+## v0.2.0
 
 #### Added
 
@@ -12,6 +18,6 @@
 * Fix the area used in `- drawRect:`
 * Fix the key-value observer compliance
 
-## Version 0.1.0
+## v0.1.0
 
 * Initial release
