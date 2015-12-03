@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "NEUPagingSegmentedControl"
-  s.version       = "0.2.1"
+  s.version       = "0.3.0"
   s.summary       = "A horizontal segmented control that works with UIScrollView paging."
   s.screenshots   = "https://bcylin.github.io/NEUPagingSegmentedControl/img/screenshot.png"
 
