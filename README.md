@@ -48,7 +48,7 @@ pod 'NEUPagingSegmentedControl', git: 'https://github.com/bcylin/NEUPagingSegmen
 * Create a `Cartfile` with the following specification and run `carthage bootstrap`.
 
 ```
-github "bcylin/NEUPagingSegmentedControl"
+github "bcylin/NEUPagingSegmentedControl" >= 0.3.0
 ```
 
 * Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add the framework to an iOS project.
