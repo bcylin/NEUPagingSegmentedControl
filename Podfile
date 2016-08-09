@@ -5,4 +5,5 @@ project "Example/Example"
 
 target :Example do
   pod "NEUPagingSegmentedControl", path: "./"
+  pod "SpaceCommander"
 end

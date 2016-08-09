@@ -1,8 +1,10 @@
 PODS:
   - NEUPagingSegmentedControl (0.3.0)
+  - SpaceCommander (1.1.8)
 
 DEPENDENCIES:
   - NEUPagingSegmentedControl (from `./`)
+  - SpaceCommander
 
 EXTERNAL SOURCES:
   NEUPagingSegmentedControl:
@@ -10,7 +12,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   NEUPagingSegmentedControl: 1efe526fbf4c69210424043cf3922f72b87557c0
+  SpaceCommander: e222039062fad5aab888c892158ca1f096f7ad2d
 
-PODFILE CHECKSUM: 72c3374a408ba46c4ad9f53d2ab5fc754c2eaa31
+PODFILE CHECKSUM: ae2837b3f0801edaf0ff20c6861418deba29144c
 
 COCOAPODS: 1.0.1
