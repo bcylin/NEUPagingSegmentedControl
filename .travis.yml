@@ -11,3 +11,6 @@ script:
   - xctool -workspace NEUPagingSegmentedControl.xcworkspace -scheme Example -sdk iphonesimulator clean build
 notifications:
   email: false
+  slack:
+    rooms:
+      secure: FqlBShTSNHjbQogI4b2Lswzg6WaOb973tY14jHC281oKncE2fLVaSyE8psdeyhFG0RMwU7o6QKkM47FhN5efT6uwgdNehwGnJ0nD6c0F7waqOqHkcixZzY9REbvFMEKdTtD+7Q/lz3ZmR7rdrfpxbQMK0Naj0ynLMgDLTWpR47E=
