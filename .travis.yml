@@ -1,14 +1,20 @@
 language: objective-c
-osx_image: xcode7.3
+osx_image: xcode9.2
+env:
+  global:
+    - WORKSPACE='NEUPagingSegmentedControl.xcworkspace'
+    - FRAMEWORK='NEUPagingSegmentedControl-iOS'
+    - EXAMPLE='Example'
 before_install:
-  - if test -z $(brew list | grep -i xcproj); then brew install xcproj; fi
   - export LANG=en_US.UTF-8
 install:
   - bundle install --without development --deployment --jobs=3 --retry=3
   - bundle exec pod install
 script:
-  - xctool -workspace NEUPagingSegmentedControl.xcworkspace -scheme NEUPagingSegmentedControl-iOS -sdk iphonesimulator clean build
-  - xctool -workspace NEUPagingSegmentedControl.xcworkspace -scheme Example -sdk iphonesimulator clean build
+  - set -o pipefail
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$FRAMEWORK" -sdk iphonesimulator clean build | xcpretty -c
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE" -sdk iphonesimulator clean build | xcpretty -c
+  - carthage build --no-skip-current --verbose | xcpretty -c
 notifications:
   email: false
   slack:
