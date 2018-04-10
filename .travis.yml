@@ -1,9 +1,10 @@
 language: objective-c
 osx_image: xcode9.2
 env:
-  - WORKSPACE='NEUPagingSegmentedControl.xcworkspace'
-  - FRAMEWORK='NEUPagingSegmentedControl-iOS'
-  - EXAMPLE='Example'
+  global:
+    - WORKSPACE='NEUPagingSegmentedControl.xcworkspace'
+    - FRAMEWORK='NEUPagingSegmentedControl-iOS'
+    - EXAMPLE='Example'
 before_install:
   - export LANG=en_US.UTF-8
 install:
@@ -11,8 +12,8 @@ install:
   - bundle exec pod install
 script:
   - set -o pipefail
-  - xcodebuild -workspace $WORKSPACE -scheme $FRAMEWORK -sdk iphonesimulator clean build | xcpretty -c
-  - xcodebuild -workspace $WORKSPACE -scheme $EXAMPLE -sdk iphonesimulator clean build | xcpretty -c
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$FRAMEWORK" -sdk iphonesimulator clean build | xcpretty -c
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE" -sdk iphonesimulator clean build | xcpretty -c
 notifications:
   email: false
   slack:
