@@ -12,8 +12,8 @@ install:
   - bundle exec pod install
 script:
   - set -o pipefail
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$FRAMEWORK" -sdk iphonesimulator clean build | xcpretty -c
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE" -sdk iphonesimulator clean build | xcpretty -c
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$FRAMEWORK" -sdk iphonesimulator clean build analyze | xcpretty -c
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE" -sdk iphonesimulator clean build analyze | xcpretty -c
   - carthage build --no-skip-current --verbose | xcpretty -c
 notifications:
   email: false

@@ -26,9 +26,9 @@
     return self;
 }
 
-- (void)loadView
+- (void)viewDidLoad
 {
-    [super loadView];
+    [super viewDidLoad];
     [self customizeAppearance];
 
     CGRect slice, remainder;
@@ -105,6 +105,15 @@
 {
     NSInteger currentIndex = self.segmentedControl.currentIndex;
     CGSize pageSize = self.scrollView.frame.size;
+    CGFloat horizontalPadding = 20;
+    CGFloat verticalPadding = 20;
+
+    if (@available(iOS 11.0, *)) {
+        // Additional paddings for iPhone X.
+        UIEdgeInsets safeArea = self.view.safeAreaInsets;
+        horizontalPadding = fmax(20, (safeArea.left + safeArea.right) / 2);
+        verticalPadding = (20 + fmax(20, safeArea.bottom)) / 2;
+    }
 
     self.scrollView.contentSize = CGSizeMake(pageSize.width * [self.segments count], pageSize.height);
     [self.scrollView.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
@@ -113,7 +122,11 @@
             .origin.y = 0,
             .size = pageSize
         };
-        view.frame = CGRectInset(pageFrame, 20, 20);
+        view.frame = ^{
+            CGRect frame = CGRectInset(pageFrame, horizontalPadding, verticalPadding);
+            frame.origin.y = 20;  // Keep padding-top fixed.
+            return frame;
+        }();
         [view setNeedsDisplay];
     }];
 
