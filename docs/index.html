@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NEUPagingSegmentedControl  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="NEUPagingSegmentedControl  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          NEUPagingSegmentedControl Docs
+        </a>
+         (100% documented)
+      </p>
+
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/bcylin/NEUPagingSegmentedControl">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">NEUPagingSegmentedControl Reference</a>
+      <img class="carat" src="img/carat.png" />
+      NEUPagingSegmentedControl  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/NEUPagingSegmentedControl.html">NEUPagingSegmentedControl</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NEUPagingSegmentedControlDelegate.html">NEUPagingSegmentedControlDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+
+            <h1 id='neupagingsegmentedcontrol' class='heading'>NEUPagingSegmentedControl</h1>
+
+<p><a href="https://travis-ci.org/bcylin/NEUPagingSegmentedControl"><img src="https://travis-ci.org/bcylin/NEUPagingSegmentedControl.svg?branch=release/0.1.0" alt="Build Status"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://bcylin.github.io/NEUPagingSegmentedControl"><img src="https://img.shields.io/cocoapods/v/NEUPagingSegmentedControl.svg" alt="CocoaPods"></a></p>
+
+<p>A horizontal segmented control that works with UIScrollView paging.</p>
+
+<ul>
+<li>Indicate the corresponding segment as the scroll view scrolls.</li>
+<li>Scroll to a page by selecting the segment title.</li>
+<li>Support device rotation.</li>
+</ul>
+
+<p><img src="https://bcylin.github.io/NEUPagingSegmentedControl/img/screenshot.png" alt="Screenshot"></p>
+<h2 id='usage' class='heading'>Usage</h2>
+<pre class="highlight objective_c"><code><span class="p">[[</span><span class="n">NEUPagingSegmentedControl</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
+                                   <span class="nf">segmentTitles</span><span class="p">:@[</span><span class="s">@"Title 1"</span><span class="p">,</span> <span class="s">@"Title 2"</span><span class="p">,</span> <span class="s">@"Title 3"</span><span class="p">];</span>
+                                      <span class="n">scrollView</span><span class="o">:</span><span class="n">scrollView</span><span class="p">];</span>
+</code></pre>
+
+<p>Delegate method (optional):</p>
+<pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pagingSegmentedControl</span><span class="p">:(</span><span class="n">NEUPagingSegmentedControl</span> <span class="o">*</span><span class="p">)</span><span class="nv">segmentedControl</span> <span class="nf">didSelectSegmentAtIndex</span><span class="p">:(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">index</span><span class="p">;</span>
+</code></pre>
+
+<p>Run the example project:</p>
+<pre class="highlight shell"><code>pod install
+open NEUPagingSegmentedControl.xcworkspace
+</code></pre>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<p>NEUPagingSegmentedControl requires ARC with iOS 7 and above.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='install-via-a-href-http-guides-cocoapods-org-cocoapods-a' class='heading'>Install via <a href="http://guides.cocoapods.org/">CocoaPods</a></h3>
+
+<ul>
+<li>Create a <code>Podfile</code> with the following specification and run <code>pod install</code>.</li>
+</ul>
+<pre class="highlight ruby"><code><span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s2">"7.0"</span>
+
+<span class="n">pod</span> <span class="s2">"NEUPagingSegmentedControl"</span>
+</code></pre>
+<h3 id='install-via-a-href-https-github-com-carthage-carthage-carthage-a' class='heading'>Install via <a href="https://github.com/Carthage/Carthage">Carthage</a></h3>
+
+<ul>
+<li>Compatible with iOS 8 and above.</li>
+<li>Create a <code>Cartfile</code> with the following specification and run <code>carthage bootstrap</code>.</li>
+</ul>
+<pre class="highlight plaintext"><code>github "bcylin/NEUPagingSegmentedControl" &gt;= 0.3.0
+</code></pre>
+
+<ul>
+<li>Follow the <a href="https://github.com/Carthage/Carthage#if-youre-building-for-ios">instructions</a> to add the framework to an iOS project.</li>
+</ul>
+<h3 id='install-manually' class='heading'>Install Manually</h3>
+
+<ul>
+<li>Copy files in the <code>Source</code> directory to an iOS project.</li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+
+<p>NEUPagingSegmentedControl is released under the MIT license. See <a href="https://github.com/bcylin/NEUPagingSegmentedControl/blob/master/LICENSE.md">LICENSE.md</a> for more info.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="https://github.com/bcylin" target="_blank" rel="external">bcylin</a>. All rights reserved. (Last updated: 2018-04-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

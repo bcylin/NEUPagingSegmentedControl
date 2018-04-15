@@ -3,6 +3,7 @@ NEUPagingSegmentedControl
 
 [![Build Status](https://travis-ci.org/bcylin/NEUPagingSegmentedControl.svg?branch=release/0.1.0)](https://travis-ci.org/bcylin/NEUPagingSegmentedControl)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/NEUPagingSegmentedControl.svg)](https://bcylin.github.io/NEUPagingSegmentedControl)
 
 A horizontal segmented control that works with UIScrollView paging.
 
@@ -26,6 +27,13 @@ Delegate method (optional):
 - (void)pagingSegmentedControl:(NEUPagingSegmentedControl *)segmentedControl didSelectSegmentAtIndex:(NSInteger)index;
 ```
 
+Run the example project:
+
+```sh
+pod install
+open NEUPagingSegmentedControl.xcworkspace
+```
+
 ## Requirements
 
 NEUPagingSegmentedControl requires ARC with iOS 7 and above.
@@ -37,9 +45,9 @@ NEUPagingSegmentedControl requires ARC with iOS 7 and above.
 * Create a `Podfile` with the following specification and run `pod install`.
 
 ```ruby
-platform :ios, '7.0'
+platform :ios, "7.0"
 
-pod 'NEUPagingSegmentedControl', git: 'https://github.com/bcylin/NEUPagingSegmentedControl.git'
+pod "NEUPagingSegmentedControl"
 ```
 
 ### Install via [Carthage](https://github.com/Carthage/Carthage)
